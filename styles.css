@@ -4,11 +4,41 @@
 @import url('css/research-cards.css');
 @import url('css/chips.css');
 
+.libre-baskerville-regular {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.libre-baskerville-bold {
+font-family: "Libre Baskerville", serif;
+font-weight: 700;
+font-style: normal;
+}
+
+.libre-baskerville-regular-italic {
+font-family: "Libre Baskerville", serif;
+font-weight: 400;
+font-style: italic;
+}
+
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+p {
+    font-size: 0.6rem;
+    line-height: 1.25;
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
 
 :root {
     --primary-color: #003366;
@@ -228,11 +258,75 @@ h4 {
 /* About Section */
 .about {
     margin-bottom: 3rem;
+    padding: 2rem 0;
 }
 
-.about p {
-    font-size: 1.1rem;
+.about h3 {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.about-intro {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+    font-size: 1rem;
     line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    text-align: center;
+    font-style: italic;
+}
+
+.about-mission {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.about-highlights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.highlight-item {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid var(--secondary-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.highlight-item h4 {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-bottom: 0.8rem;
+}
+
+.highlight-item p {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    margin: 0;
 }
 
 /* News Section */
@@ -566,6 +660,24 @@ h4 {
     .member-photo {
         width: 90px;
         height: 120px;
+    }
+    
+    .about-highlights {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        grid-template-rows: repeat(3, 1fr);
+    }
+    
+    .about h3 {
+        font-size: 1.5rem;
+    }
+    
+    .about-intro {
+        font-size: 1.1rem;
+    }
+    
+    .about-mission {
+        font-size: 1rem;
     }
 }
 

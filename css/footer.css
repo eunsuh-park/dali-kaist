@@ -2,5 +2,74 @@
 footer {
     color: var(--primary-color);
     text-align: center;
-    padding: 1rem;
+    padding: 2rem 1rem 1rem 1rem;
+    background-color: var(--light-bg);
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-info,
+.footer-contact {
+    flex: 1;
+    text-align: left;
+    margin: 0 1rem;
+}
+
+.footer-info p,
+.footer-contact p {
+    font-family: "Libre Baskerville", serif;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.footer-info strong,
+.footer-contact strong {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.footer-copyright {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+}
+
+.footer-copyright p {
+    font-family: "Libre Baskerville", serif;
+    font-size: 0.7rem;
+    color: var(--secondary-color);
+    margin: 0;
+}
+
+/* Responsive Design for Footer */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-info,
+    .footer-contact {
+        margin: 0.5rem 0;
+        text-align: center;
+    }
+    
+    .footer-info p,
+    .footer-contact p {
+        font-size: 0.7rem;
+    }
+    
+    .footer-copyright p {
+        font-size: 0.65rem;
+    }
 }
