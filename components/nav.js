@@ -1,7 +1,6 @@
 const navTemplate = `
 <nav>
     <div class="nav-container">
-        <a href="index.html" class="logo">DaLI Lab</a>
         <button class="hamburger" aria-label="Toggle menu">
             <span></span>
             <span></span>
@@ -15,5 +14,6 @@ const navTemplate = `
             <li><a href="application.html">Application</a></li>
         </ul>
     </div>
+    <div class="nav-overlay"></div>
 </nav>
 `;

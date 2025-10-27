@@ -11,40 +11,74 @@
 
     <main>
         <section class="section">
-            <div class="container">
-                <h2>Members</h2>
+            <div class="page-layout">
+                <div class="sidebar">
+                    <h5>Members by Category</h5>
+                    <ul class="sidebar-menu">
+                        <li><a href="#professor" class="active">Professor</a></li>
+                        <li><a href="#phd">Ph.D. Students</a></li>
+                        <li><a href="#affiliated">Affiliated Members</a></li>
+                        <li><a href="#alumni">Alumni</a></li>
+                    </ul>
+                </div>
+                <div class="main-content">
+                    <h2>Members</h2>
 
-                <div class="member-group">
-                    <h3>Professor</h3>
-                    <div class="member">
-                        <div class="member-photo">
-                            <img src="images/members/jeong-nam_kim.jpg" alt="Prof. Jeong-Nam Kim">
-                        </div>
-                        <div class="member-info">
-                            <h4>Jeong-Nam Kim, Ph.D.</h4>
-                            <p>Chair Professor</p>
-                            <p>Moon Soul Graduate School of Future Strategy, KAIST</p>
-                            <p><strong>Research Interests:</strong> Communication Theory, Media, Public Relations, Strategic Communication</p>
-                            <p><strong>Email:</strong> <a href="mailto:layinformatics@kaist.ac.kr" class="email-link">layinformatics@kaist.ac.kr</a></p>
+                    <div class="member-group" id="professor">
+                        <h3>Professor</h3>
+                        <div class="member">
+                            <div class="member-photo">
+                                <img src="images/members/jeong-nam_kim.jpg" alt="Prof. Jeong-Nam Kim">
+                            </div>
+                            <div class="member-info">
+                                <h4>Jeong-Nam Kim, Ph.D.</h4>
+                                <p><strong>Chair Professor</strong></p>
+                                <p>Moon Soul Graduate School of Future Strategy, KAIST</p>
+                                <div class="chips-container">
+                                    <div class="chip">Communication Theory</div>
+                                    <div class="chip">Media</div>
+                                    <div class="chip">Public Relations</div>
+                                    <div class="chip">Strategic Communication</div>
+                                </div>
+                                <p><a href="mailto:layinformatics@kaist.ac.kr" class="email-link">layinformatics@kaist.ac.kr</a></p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="member-group">
-                    <h3>Ph.D. Students</h3>
-                    <div class="member">
-                        <div class="member-photo">
-                            <!-- <img src="https://via.placeholder.com/120x160/4A90E2/FFFFFF?text=PhD" alt="Member Name"> -->
+                    <div class="member-group" id="phd">
+                        <h3>Ph.D. Students</h3>
+                        <div class="member">
+                            <div class="member-photo">
+                                <img src="images/members/jen_sern_tham.jpg" alt="Jen Sern Tham">
+                            </div>
+                            <div class="member-info">
+                                <h4>Jen Sern Tham</h4>
+                                <p><strong>Ph.D. Student</strong></p>
+                                <p>DaLI Lab, KAIST</p>
+                                <div class="chips-container">
+                                    <div class="chip">Health Communication</div>
+                                    <div class="chip">Information Behavior</div>
+                                    <div class="chip">Mental Health</div>
+                                </div>
+                                <p><a href="mailto:jensern.tham@kaist.ac.kr" class="email-link">jensern.tham@kaist.ac.kr</a></p>
+                            </div>
                         </div>
-                        <div class="member-info">
-                            <h4>Francis Jizhou Ye</h4>
-                            <p>Ph.D. Course</p>
-                            <p>Gaylord College of Journalism and Mass Communication, The University of Oklahoma</p>
-                            <p><strong>Research Interests:</strong> Strategic Communication, Health Communication</p>
-                            <p><strong>Email:</strong> <a href="mailto:jizhouye@ou.edu" class="email-link">jizhouye@ou.edu</a></p>
+                        <div class="member">
+                            <div class="member-photo">
+                                <img src="images/members/si_hyeok_lee.jpg" alt="Si Hyeok Lee">
+                            </div>
+                            <div class="member-info">
+                                <h4>Si Hyeok Lee</h4>
+                                <p><strong>Ph.D. Student</strong></p>
+                                <p>DaLI Lab, KAIST</p>
+                                <div class="chips-container">
+                                    <div class="chip">Communication Research</div>
+                                    <div class="chip">Media Studies</div>
+                                </div>
+                                <p><a href="mailto:sihyeok.lee@kaist.ac.kr" class="email-link">sihyeok.lee@kaist.ac.kr</a></p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
                 <!-- <div class="member-group">
                     <h3>Master's Students</h3>
@@ -70,52 +104,170 @@
                     </div>
                 </div> -->
 
-                <div class="member-group">
-                    <h3>Affiliated Members</h3>
-                    <div class="member">
-                        <div class="member-photo">
-                            <!-- <img src="https://via.placeholder.com/120x160/4A90E2/FFFFFF?text=Member" alt="Member Name"> -->
-                        </div>
-                        <div class="member-info">
-                            <h4>Hyelim Lee, Ph.D.</h4>
-                            <p>Assistant Professor</p>
-                            <p>College of Media & Communication, Korea University</p>
-                            <p><strong>Research Interests:</strong> Public Relations Theory, Public Relations Methodology</p>
-                            <p><strong>Email:</strong> <a href="mailto:hyelim_lee@korea.ac.kr" class="email-link">hyelim_lee@korea.ac.kr</a></p>
+                    <div class="member-group" id="affiliated">
+                        <h3>Affiliated Members</h3>
+                        <div class="members-grid">
+                            <div class="member">
+                                <div class="member-photo">
+                                    <img src="images/members/alessandra_mazzei.jpg" alt="Alessandra Mazzei">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Alessandra Mazzei, Ph.D.</h4>
+                                    <p><strong>Affiliated Researcher</strong></p>
+                                    <p>DaLI Lab, KAIST</p>
+                                    <div class="chips-container">
+                                        <div class="chip">Strategic Communication</div>
+                                        <div class="chip">Public Relations</div>
+                                    </div>
+                                    <p><a href="mailto:alessandra.mazzei@kaist.ac.kr" class="email-link">alessandra.mazzei@kaist.ac.kr</a></p>
+                                </div>
+                            </div>
+                            <div class="member">
+                                <div class="member-photo">
+                                    <img src="images/members/jeong-nam_kim.jpg" alt="David Ebert">
+                                </div>
+                                <div class="member-info">
+                                    <h4>David Ebert, Ph.D.</h4>
+                                    <p><strong>Affiliated Researcher</strong></p>
+                                    <p>DaLI Lab, KAIST</p>
+                                    <div class="chips-container">
+                                        <div class="chip">Communication Research</div>
+                                        <div class="chip">Media Studies</div>
+                                    </div>
+                                    <p><a href="mailto:david.ebert@kaist.ac.kr" class="email-link">david.ebert@kaist.ac.kr</a></p>
+                                </div>
+                            </div>
+                            <div class="member">
+                                <div class="member-photo">
+                                    <img src="images/members/lisa_tam.jpg" alt="Lisa Tam">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Lisa Tam, Ph.D.</h4>
+                                    <p><strong>Affiliated Researcher</strong></p>
+                                    <p>DaLI Lab, KAIST</p>
+                                    <div class="chips-container">
+                                        <div class="chip">Communication Theory</div>
+                                        <div class="chip">Media Research</div>
+                                    </div>
+                                    <p><a href="mailto:lisa.tam@kaist.ac.kr" class="email-link">lisa.tam@kaist.ac.kr</a></p>
+                                </div>
+                            </div>
+                            <div class="member">
+                                <div class="member-photo">
+                                    <img src="images/members/loarre_andreu_perez.jpg" alt="Loarre Andreu Perez">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Loarre Andreu Perez, Ph.D.</h4>
+                                    <p><strong>Affiliated Researcher</strong></p>
+                                    <p>DaLI Lab, KAIST</p>
+                                    <div class="chips-container">
+                                        <div class="chip">Strategic Communication</div>
+                                        <div class="chip">Public Relations</div>
+                                    </div>
+                                    <p><a href="mailto:loarre.perez@kaist.ac.kr" class="email-link">loarre.perez@kaist.ac.kr</a></p>
+                                </div>
+                            </div>
+                            <div class="member">
+                                <div class="member-photo">
+                                    <img src="images/members/ming_ming_chiu.jpg" alt="Ming Ming Chiu">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Ming Ming Chiu, Ph.D.</h4>
+                                    <p><strong>Affiliated Researcher</strong></p>
+                                    <p>DaLI Lab, KAIST</p>
+                                    <div class="chips-container">
+                                        <div class="chip">Communication Research</div>
+                                        <div class="chip">Media Studies</div>
+                                    </div>
+                                    <p><a href="mailto:mingming.chiu@kaist.ac.kr" class="email-link">mingming.chiu@kaist.ac.kr</a></p>
+                                </div>
+                            </div>
+                            <div class="member">
+                                <div class="member-photo">
+                                    <img src="images/members/jeong-nam_kim.jpg" alt="Myoung-Gi Chon">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Myoung-Gi Chon, Ph.D.</h4>
+                                    <p><strong>Affiliated Researcher</strong></p>
+                                    <p>DaLI Lab, KAIST</p>
+                                    <div class="chips-container">
+                                        <div class="chip">Social Media</div>
+                                        <div class="chip">Digital Activism</div>
+                                        <div class="chip">Communication Behavior</div>
+                                    </div>
+                                    <p><a href="mailto:myounggi.chon@kaist.ac.kr" class="email-link">myounggi.chon@kaist.ac.kr</a></p>
+                                </div>
+                            </div>
+                            <div class="member">
+                                <div class="member-photo">
+                                    <img src="images/members/soo_yun_kim.jpg" alt="Soo Yun Kim">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Soo Yun Kim, Ph.D.</h4>
+                                    <p><strong>Affiliated Researcher</strong></p>
+                                    <p>DaLI Lab, KAIST</p>
+                                    <div class="chips-container">
+                                        <div class="chip">Communication Research</div>
+                                        <div class="chip">Media Studies</div>
+                                    </div>
+                                    <p><a href="mailto:sooyun.kim@kaist.ac.kr" class="email-link">sooyun.kim@kaist.ac.kr</a></p>
+                                </div>
+                            </div>
+                            <div class="member">
+                                <div class="member-photo">
+                                    <img src="images/members/daniel_thompson.jpg" alt="Daniel Thompson">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Daniel Thompson, Ph.D.</h4>
+                                    <p><strong>Affiliated Researcher</strong></p>
+                                    <p>DaLI Lab, KAIST</p>
+                                    <div class="chips-container">
+                                        <div class="chip">Communication Theory</div>
+                                        <div class="chip">Media Research</div>
+                                    </div>
+                                    <p><a href="mailto:daniel.thompson@kaist.ac.kr" class="email-link">daniel.thompson@kaist.ac.kr</a></p>
+                                </div>
+                            </div>
+                            <div class="member">
+                                <div class="member-photo">
+                                    <img src="images/members/valentina_martino.jpg" alt="Valentina Martino">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Valentina Martino, Ph.D.</h4>
+                                    <p><strong>Affiliated Researcher</strong></p>
+                                    <p>DaLI Lab, KAIST</p>
+                                    <div class="chips-container">
+                                        <div class="chip">Communication Research</div>
+                                        <div class="chip">Media Studies</div>
+                                    </div>
+                                    <p><a href="mailto:valentina.martino@kaist.ac.kr" class="email-link">valentina.martino@kaist.ac.kr</a></p>
+                                </div>
+                            </div>
+                            <div class="member">
+                                <div class="member-photo">
+                                    <img src="images/members/yu_won_oh.jpg" alt="Yu Won Oh">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Yu Won Oh, Ph.D.</h4>
+                                    <p><strong>Affiliated Researcher</strong></p>
+                                    <p>DaLI Lab, KAIST</p>
+                                    <div class="chips-container">
+                                        <div class="chip">Communication Research</div>
+                                        <div class="chip">Media Studies</div>
+                                    </div>
+                                    <p><a href="mailto:yuwon.oh@kaist.ac.kr" class="email-link">yuwon.oh@kaist.ac.kr</a></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="member">
-                        <div class="member-photo">
-                            <!-- <img src="https://via.placeholder.com/120x160/4A90E2/FFFFFF?text=Member" alt="Member Name"> -->
-                        </div>
-                        <div class="member-info">
-                            <h4>Soo Yun Kim, Ph.D.</h4>
-                            <p>Assistant Professor</p>
-                            <p>College of Liberal Arts, University of Texas - Rio Grande Valley</p>
-                            <p><strong>Research Interests:</strong> Science Communication, Health Communication, Media Society &amp; Public Opinion</p>
-                            <p><strong>Email:</strong> <a href="mailto:sooyun.kim@utrgv.edu" class="email-link">sooyun.kim@utrgv.edu</a></p>
-                        </div>
-                    </div>
-                    <div class="member">
-                        <div class="member-photo">
-                            <img src="images/members/seongbum_seo.jpg" alt="Prof. Jeong-Nam Kim">
-                        </div>
-                        <div class="member-info">
-                            <h4>Seongbum Seo</h4>
-                            <p>Department of Computer Engineering, Sejong University</p>
-                            <p><strong>Research Interests:</strong> Data Visualization, Natural Language Processing, Intelligent Assistant</p>
-                            <p><strong>Email:</strong> <a href="mailto:seo@seongbum.com" class="email-link">seo@seongbum.com</a></p>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="member-group">
-                    <h3>Alumni</h3>
-                    <ul class="alumni-list">
-                        <li>[Name], Ph.D. (Year) - Current: [Position, Institution]</li>
-                        <li>[Name], Ph.D. (Year) - Current: [Position, Institution]</li>
-                        <li>[Name], M.A. (Year) - Current: [Position, Company]</li>
-                    </ul>
+                    <div class="member-group" id="alumni">
+                        <h3>Alumni</h3>
+                        <ul class="alumni-list">
+                            <li>Seungyoon Lee, Ph.D. - Current: Assistant Professor, Department of Communication, University of Kentucky</li>
+                            <li>Yana Hashim, Ph.D. - Current: Research Fellow, Department of Communication, University of California</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>

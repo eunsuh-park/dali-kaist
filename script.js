@@ -6,16 +6,6 @@ function loadComponent(elementId, template) {
     }
 }
 
-// Adjust main padding based on nav height
-function adjustMainPadding() {
-    const nav = document.querySelector('nav');
-    const main = document.querySelector('main');
-    if (nav && main) {
-        const navHeight = nav.offsetHeight;
-        main.style.marginTop = navHeight + 'px';
-    }
-}
-
 // Load nav and footer, then set active navigation
 document.addEventListener('DOMContentLoaded', function() {
     // Load components
@@ -34,30 +24,28 @@ document.addEventListener('DOMContentLoaded', function() {
             link.classList.remove('active');
         }
     });
-
-    // Adjust main padding after components are loaded
-    adjustMainPadding();
 });
-
-// Adjust padding on window resize
-window.addEventListener('resize', adjustMainPadding);
 
 // Hamburger menu toggle
 document.addEventListener('click', function(e) {
     if (e.target.closest('.hamburger')) {
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
+        const overlay = document.querySelector('.nav-overlay');
         hamburger.classList.toggle('active');
         navLinks.classList.toggle('active');
+        overlay.classList.toggle('active');
     }
 
     // Close menu when clicking outside
     if (!e.target.closest('.nav-container')) {
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
-        if (hamburger && navLinks) {
+        const overlay = document.querySelector('.nav-overlay');
+        if (hamburger && navLinks && overlay) {
             hamburger.classList.remove('active');
             navLinks.classList.remove('active');
+            overlay.classList.remove('active');
         }
     }
 
@@ -65,9 +53,23 @@ document.addEventListener('click', function(e) {
     if (e.target.closest('.nav-links a')) {
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
-        if (hamburger && navLinks) {
+        const overlay = document.querySelector('.nav-overlay');
+        if (hamburger && navLinks && overlay) {
             hamburger.classList.remove('active');
             navLinks.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+    }
+
+    // Close menu when clicking overlay
+    if (e.target.closest('.nav-overlay')) {
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const overlay = document.querySelector('.nav-overlay');
+        if (hamburger && navLinks && overlay) {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+            overlay.classList.remove('active');
         }
     }
 });
