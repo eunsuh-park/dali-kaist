@@ -1,0 +1,76 @@
+/* Sidebar Styles */
+.page-layout {
+    display: flex;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.sidebar {
+    width: 160px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+}
+
+.sidebar h5 {
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+.sidebar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--text-color);
+    border-radius: 4px;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.sidebar-menu a:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.sidebar-menu a.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Responsive Design for Sidebar */
+@media (max-width: 768px) {
+    .page-layout {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .sidebar {
+        width: 100%;
+        position: static;
+        order: 2;
+    }
+
+    .main-content {
+        order: 1;
+    }
+}

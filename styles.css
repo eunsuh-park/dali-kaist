@@ -1,3 +1,9 @@
+@import url('css/sidebar.css');
+@import url('css/footer.css');
+@import url('css/publication-cards.css');
+@import url('css/research-cards.css');
+@import url('css/chips.css');
+
 * {
     margin: 0;
     padding: 0;
@@ -15,6 +21,8 @@
 
 html {
     height: 100%;
+    box-sizing: border-box;
+
 }
 
 body {
@@ -24,41 +32,69 @@ body {
     min-height: 100%;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
 /* Navigation */
 nav {
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     position: fixed;
     top: 0;
-    width: 100%;
+    left: 0;
     z-index: 1000;
 }
 
 .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    text-decoration: none;
 }
 
 .nav-links {
     list-style: none;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100vh;
+    width: 280px;
+    background-color: white;
+    flex-direction: column;
+    gap: 0;
+    padding: 80px 0 2rem 0;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    transition: left 0.3s ease;
+    z-index: 1000;
+}
+
+.nav-links.active {
+    left: 0;
     display: flex;
-    gap: 2rem;
+}
+
+.nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+.nav-overlay.active {
+    display: block;
+}
+
+.nav-links li {
+    width: 100%;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .nav-links a {
+    display: block;
+    padding: 1rem 2rem;
     text-decoration: none;
     color: var(--text-color);
     font-weight: 500;
@@ -76,7 +112,7 @@ nav {
 
 /* Hamburger Menu */
 .hamburger {
-    display: none;
+    display: flex;
     flex-direction: column;
     gap: 5px;
     background: none;
@@ -108,7 +144,6 @@ nav {
 
 /* Main Content */
 main {
-    margin-top: 70px;
     flex: 1;
 }
 
@@ -116,9 +151,22 @@ main {
     padding: 4rem 2rem;
 }
 
+.section.hero-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100vh;
+}
+
 .container {
     max-width: 1000px;
     margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.hero-section .container {
+    width: 50vw;
+    padding: 4rem 2rem;
 }
 
 /* Hero Section */
@@ -127,7 +175,13 @@ main {
     padding: 4rem 2rem;
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
-    margin: -4rem -2rem 3rem -2rem;
+    width: 50vw;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero h1 {
@@ -229,6 +283,11 @@ h4 {
 .contact-info {
     flex: 1;
     background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    gap: 1rem;
     /* padding: 2rem; */
     /* border-left: 4px solid var(--secondary-color);
     border-radius: 4px; */
@@ -243,9 +302,26 @@ h4 {
 }
 
 /* Research Section */
+.research-year {
+    margin-bottom: 3rem;
+}
+
+.research-year h3 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
 .research-area {
     margin-bottom: 2.5rem;
     padding-left: 1rem;
+}
+
+.research-area h4 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
 }
 
 .research-area ul {
@@ -262,29 +338,6 @@ h4 {
     margin-bottom: 2.5rem;
 }
 
-.publication-list {
-    list-style: none;
-    margin-left: 1rem;
-}
-
-.publication-list li {
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.publication-list li:last-child {
-    border-bottom: none;
-}
-
-.publication-list a {
-    color: var(--secondary-color);
-    text-decoration: none;
-    margin-left: 0.5rem;
-}
-
-.publication-list a:hover {
-    text-decoration: underline;
-}
 
 /* Members Section */
 .member-group {
@@ -294,12 +347,74 @@ h4 {
 .member {
     background-color: white;
     padding: 1.5rem;
-    /* border-radius: 4px; */
     margin-bottom: 1rem;
-    border-left: 3px solid var(--secondary-color);
     display: flex;
+    flex-direction: column;
     gap: 1.5rem;
     align-items: flex-start;
+}
+
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Professor and Ph.D. Member Cards - Horizontal Layout */
+#professor .member,
+#phd .member {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 2px solid var(--primary-color);
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#professor .member-photo,
+#phd .member-photo {
+    margin-right: 1.5rem;
+    flex-shrink: 0;
+}
+
+#professor .member-info,
+#phd .member-info {
+    flex: 1;
+}
+
+/* Affiliated Members - Centered Layout with Circular Images */
+#affiliated .member {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#affiliated .member-photo {
+    margin: 0 auto 1rem auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+#affiliated .member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#affiliated .member-info h4 {
+    margin-bottom: 0.5rem;
+}
+
+#affiliated .member-info p {
+    margin-bottom: 0.25rem;
 }
 
 .member-photo {
@@ -376,53 +491,42 @@ h4 {
     margin-bottom: 0.5rem;
 }
 
-/* Footer */
-footer {
-    background-color: var(--primary-color);
-    color: white;
-    text-align: center;
-    padding: 2rem;
-}
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
 @media (max-width: 768px) {
-    .nav-container {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+    .members-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
 
-    .hamburger {
-        display: flex;
-    }
-
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        height: 100vh;
-        width: 250px;
-        background-color: white;
+    .member {
         flex-direction: column;
-        gap: 0;
-        padding: 80px 2rem 2rem 2rem;
-        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-        transition: right 0.3s ease;
-        z-index: 1000;
+        align-items: center;
+        text-align: center;
     }
 
-    .nav-links.active {
-        right: 0;
+    .member-photo {
+        width: 90px;
+        height: 120px;
     }
-
-    .nav-links li {
-        width: 100%;
-        border-bottom: 1px solid var(--border-color);
+    
+    #professor .member,
+    #phd .member {
+        flex-direction: column;
+        text-align: center;
     }
-
-    .nav-links a {
-        display: block;
-        padding: 1rem 0;
+    
+    #professor .member-photo,
+    #phd .member-photo {
+        margin-right: 0;
+        margin-bottom: 1rem;
     }
 
     .hero h1 {
