@@ -24,6 +24,20 @@ document.addEventListener('DOMContentLoaded', function() {
             link.classList.remove('active');
         }
     });
+
+    // Go to Top 버튼 주입 (about.html, application.html 제외)
+    const excludedPages = ['about.html', 'application.html'];
+    if (!excludedPages.includes(currentPage)) {
+        const btn = document.createElement('button');
+        btn.className = 'go-top';
+        btn.setAttribute('aria-label', 'Go to top');
+        btn.title = 'Go to top';
+        btn.innerHTML = '↑';
+        btn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        document.body.appendChild(btn);
+    }
 });
 
 // Hamburger menu toggle

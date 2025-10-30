@@ -1,27 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@300;400;600&display=swap');
 @import url('css/sidebar.css');
 @import url('css/footer.css');
+@import url('css/nav.css');
+@import url('css/page-header.css');
 @import url('css/publication-cards.css');
-@import url('css/research-cards.css');
 @import url('css/chips.css');
-
-.libre-baskerville-regular {
-    font-family: "Libre Baskerville", serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.libre-baskerville-bold {
-font-family: "Libre Baskerville", serif;
-font-weight: 700;
-font-style: normal;
-}
-
-.libre-baskerville-regular-italic {
-font-family: "Libre Baskerville", serif;
-font-weight: 400;
-font-style: italic;
-}
-
+@import url('css/gallery.css');
+@import url('css/go-top.css');
 
 
 * {
@@ -31,9 +16,9 @@ font-style: italic;
 }
 
 p {
-    font-size: 0.6rem;
+    font-size: 1rem;
     line-height: 1.25;
-    font-family: "Libre Baskerville", serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-weight: 400;
     font-style: normal;
 }
@@ -42,143 +27,62 @@ p {
 
 :root {
     --primary-color: #003366;
-    --secondary-color: #0066cc;
+    --secondary-color: #656e76;
     --text-color: #333;
+    --text-color-light: #7f858a;
     --light-bg: #f8f9fa;
     --border-color: #e0e0e0;
-    --hover-color: #004080;
+    --hover-color: #5e80a30d;
+    /* Height of fixed top navigation; used to offset sticky headers */
+    --nav-height: 64px;
+    /* Width of fixed sidebar (used by page-header as sidebar) */
+    --sidebar-width: 320px;
+    --page-header-height: calc(100vh - var(--nav-height));
 }
 
 html {
     height: 100%;
     box-sizing: border-box;
+    /* 사이트 전역 최소 너비 설정 */
+    min-width: 320px;
 
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Tomorrow', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600; /* Semibold as default */
     line-height: 1.6;
     color: var(--text-color);
     min-height: 100%;
+    /* 전역 최소 너비 상속 보조 (구형 브라우저 대비) */
+    min-width: 320px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
 }
 
-/* Navigation */
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-}
-
-.nav-container {
-    padding: 1rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.nav-links {
-    list-style: none;
-    display: none;
-    position: fixed;
-    top: 0;
-    left: -100%;
-    height: 100vh;
-    width: 280px;
-    background-color: white;
-    flex-direction: column;
-    gap: 0;
-    padding: 80px 0 2rem 0;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-    transition: left 0.3s ease;
-    z-index: 1000;
-}
-
-.nav-links.active {
-    left: 0;
-    display: flex;
-}
-
-.nav-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-    display: none;
-}
-
-.nav-overlay.active {
-    display: block;
-}
-
-.nav-links li {
-    width: 100%;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.nav-links a {
-    display: block;
-    padding: 1rem 2rem;
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: var(--secondary-color);
-}
-
-.nav-links a.active {
-    color: var(--secondary-color);
-    font-weight: 600;
-}
-
-/* Hamburger Menu */
-.hamburger {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    z-index: 1001;
-}
-
-.hamburger span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: var(--primary-color);
-    transition: all 0.3s;
-}
-
-.hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(8px, 8px);
-}
-
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
-}
+/* Navigation moved to css/nav.css */
 
 /* Main Content */
 main {
     flex: 1;
 }
 
+.main-content {
+    overflow: scroll;
+}
+
+
 .section {
     padding: 4rem 2rem;
+}
+
+#home-section {
+    padding: 0;
+    margin-top: var(--nav-height);
+    height: calc(100vh - var(--nav-height));
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .section.hero-section {
@@ -186,10 +90,10 @@ main {
     flex-direction: row;
     align-items: center;
     height: 100vh;
+    box-sizing: border-box;
 }
 
 .container {
-    max-width: 1000px;
     margin: 0 auto;
     box-sizing: border-box;
 }
@@ -203,9 +107,9 @@ main {
 .hero {
     text-align: center;
     padding: 4rem 2rem;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.3) 100%), url('images/main_bg.jpg') center center / cover no-repeat;
     color: white;
-    width: 50vw;
+    width: 100vw;
     height: 100vh;
     box-sizing: border-box;
     display: flex;
@@ -216,20 +120,18 @@ main {
 
 .hero h1 {
     font-size: 3rem;
+    line-height: 1.2;
     margin-bottom: 0.5rem;
-    font-weight: 700;
-}
-
-.hero h2 {
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
-    color: white;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 1.5rem;
 }
 
 .hero .subtitle {
-    font-size: 1.1rem;
-    opacity: 0.9;
+    font-weight: 200;
+    font-size: 1.75rem;
+    opacity: 0.75;
+    text-align: left;
 }
 
 /* Typography */
@@ -256,33 +158,20 @@ h4 {
 }
 
 /* About Section */
-.about {
-    margin-bottom: 3rem;
+.main-content {
     padding: 2rem 0;
 }
 
-.about h3 {
-    font-family: "Libre Baskerville", serif;
-    font-weight: 700;
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
-
 .about-intro {
-    font-family: "Libre Baskerville", serif;
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.8;
     color: var(--text-color);
-    margin-bottom: 1rem;
-    text-align: center;
-    font-style: italic;
+    text-align: left;
+    width: 75%;
 }
 
 .about-mission {
-    font-family: "Libre Baskerville", serif;
     font-weight: 400;
     font-size: 0.8rem;
     line-height: 1.8;
@@ -396,39 +285,27 @@ h4 {
 }
 
 /* Research Section */
-.research-year {
-    margin-bottom: 3rem;
-}
 
 .research-year h3 {
     color: var(--primary-color);
-    border-bottom: 2px solid var(--secondary-color);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
 }
 
 .research-area {
-    margin-bottom: 2.5rem;
     padding-left: 1rem;
 }
 
 .research-area h4 {
     color: var(--text-color);
-    margin-bottom: 1rem;
     font-size: 1.1rem;
 }
 
 .research-area ul {
     margin-left: 2rem;
-    margin-top: 1rem;
 }
 
-.research-area li {
-    margin-bottom: 0.5rem;
-}
 
 /* Publications Section */
-.publication-year {
+.publication-year, .research-year {
     margin-bottom: 2.5rem;
 }
 
@@ -436,6 +313,14 @@ h4 {
 /* Members Section */
 .member-group {
     margin-bottom: 3rem;
+    /* Ensure anchored scroll positions appear below fixed top nav */
+    scroll-margin-top: calc(var(--nav-height) + 12px);
+}
+
+/* Ensure research/publications anchors appear below fixed top nav */
+.research-year,
+.publication-year {
+    scroll-margin-top: calc(var(--nav-height) + 12px);
 }
 
 .member {
@@ -473,6 +358,13 @@ h4 {
 #phd .member-photo {
     margin-right: 1.5rem;
     flex-shrink: 0;
+}
+
+#phd .member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 #professor .member-info,
@@ -518,6 +410,9 @@ h4 {
     border-radius: 4px;
     overflow: hidden;
     background-color: var(--light-bg);
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--border-color);
 }
 
 .member-photo img {
@@ -567,34 +462,46 @@ h4 {
 }
 
 /* Application Section */
-.application-content h3 {
-    margin-top: 2rem;
+.main-content h3 {
+    margin: 2rem 0;
 }
 
-.application-content h3:first-child {
-    margin-top: 0;
+.main-content h3:first-child {
+    margin-top: 48px;
 }
 
-.application-content ul {
+
+.main-content ul {
     margin-left: 2rem;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
 }
 
-.application-content li {
+.main-content li {
     margin-bottom: 0.5rem;
+    font-weight: 300;
 }
+
+/* Gallery styles moved to css/gallery.css */
 
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (min-width: 769px) {
     .members-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
     }
+
+    .main-content h3:first-child {
+        margin-top: calc(var(--nav-height) + 1.5rem);
+    }
+
 }
 
 @media (max-width: 768px) {
+    .main-content h3:first-child {
+        margin-top: calc(var(--nav-height) + 0.25rem);
+    }
     .members-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
@@ -685,3 +592,5 @@ h4 {
 html {
     scroll-behavior: smooth;
 }
+
+/* Desktop nav moved to css/nav.css */

@@ -1,0 +1,36 @@
+/* Go to Top Button */
+.go-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1100;
+    display: none; /* 기본은 숨김: 반응형에서만 표시 */
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    border: 1px solid var(--border-color);
+    background-color: #fff;
+    color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    cursor: pointer;
+}
+
+.go-top:hover {
+    background-color: var(--hover-color);
+}
+
+/* 태블릿/모바일에서만 표시 */
+@media (max-width: 1023px) {
+    .go-top {
+        display: inline-flex;
+    }
+}
+
+/* 데스크탑에서는 숨김 보장 */
+@media (min-width: 1024px) {
+    .go-top { display: none; }
+}
+
+

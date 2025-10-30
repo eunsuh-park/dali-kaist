@@ -1,0 +1,232 @@
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Top-nav defaults */
+nav {
+    right: 0;
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* 내비 컨테이너: 모든 반응형에서 좌우 패딩을 동일(28px)로 유지 */
+.nav-container {
+    padding: 0 28px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: var(--nav-height);
+}
+
+.nav-logo {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0; /* prevent collapsing to width: 0 in flex layout */
+}
+
+.nav-logo img {
+    display: block; /* remove inline-gap */
+    width: 100%;    /* responsive to container */
+    max-width: 200px; /* cap at 200px */
+    height: auto;   /* preserve aspect ratio */
+}
+
+/* 사이드 메뉴(드로어): 기본값을 우측에서 등장하도록 설정 */
+.nav-links {
+    list-style: none;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: auto; /* 좌측 고정값 제거 */
+    right: -100%; /* 기본: 화면 우측 밖에 대기 */
+    height: 100vh;
+    width: 280px;
+    background-color: white;
+    flex-direction: column;
+    gap: 0;
+    padding: 80px 0 2rem 0;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    transition: right 0.3s ease; /* 우측 슬라이드 전환 */
+    z-index: 1000;
+}
+
+/* 활성화 시: 우측에서 슬라이드 인 */
+.nav-links.active {
+    right: 0;
+    display: flex;
+}
+
+.nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+.nav-overlay.active {
+    display: block;
+}
+
+.nav-links li {
+    width: 100%;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-links a {
+    display: block;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--secondary-color);
+}
+
+.nav-links a.active {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    /* 더 넓은 클릭/터치 영역 확보 및 X 아이콘 잘림 방지 */
+    z-index: 1001;
+    /* 햄버거 버튼 영역 크기 명시 */
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+    align-items: center;
+    box-sizing: content-box;
+}
+
+.hamburger span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    transition: all 0.3s;
+    /* 앞으로 나오는 X자 변형 외곽 여유 */
+    margin: 0 auto;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 7px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+    /* 공간 확보 (사라지더라도 X자 모양 두께 일정하게) */
+    transform: scaleX(0);
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -7px);
+}
+
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Desktop: convert to top navigation */
+@media (min-width: 1024px) {
+    .nav-container {
+        /* 데스크탑: 좌우 동일 28px 유지 */
+        margin: 0 auto;
+        padding: 0 28px;
+    }
+
+    .hamburger {
+        display: none;
+    }
+
+    .nav-links {
+        position: static;
+        display: flex;
+        height: auto;
+        width: auto;
+        background: transparent;
+        flex-direction: row;
+        gap: 1.5rem;
+        padding: 0;
+        box-shadow: none;
+        left: 0;
+    }
+
+    .nav-links li {
+        width: auto;
+        border-bottom: none;
+    }
+
+    .nav-links a {
+        padding: 0.5rem 0;
+    }
+
+    .nav-overlay {
+        display: none !important;
+    }
+}
+
+
+/* Tablet */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .nav-container {
+        justify-content: space-between;
+    }
+
+    /* 드로어를 우측에서 열리도록 보장 (기본 규칙을 보완) */
+    .nav-links {
+        right: -100%;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+    .nav-container {
+        padding: 0 32px;
+    }
+}
+
+/* Mobile (≤767px): 모바일 S/M 통합 */
+@media (max-width: 767px) {
+    .nav-links {
+        width: 260px;
+        padding: 84px 0 2rem 0;
+    }
+
+    .nav-links a {
+        padding: 1rem 1.75rem;
+    }
+
+    .nav-logo img {
+        max-width: 180px;
+    }
+
+    .hamburger span {
+        width: 22px;
+    }
+    .nav-container {
+        padding: 0 16px;
+    }
+}
