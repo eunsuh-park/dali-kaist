@@ -1,7 +1,7 @@
 /* Publication Cards Styles */
 .publication-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1.5rem;
     margin-top: 1rem;
 }
@@ -16,14 +16,86 @@
     display: flex;
     flex-direction: row;
     gap: 1.5rem;
+    min-height: 200px;
+    overflow: hidden;
+}
+
+.publication-card-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--primary-color);
+    opacity: 0;
+    transition: width 0.3s ease, opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.publication-card:hover .publication-card-overlay {
+    width: 80px;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.publication-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.publication-card:hover .publication-icon-container {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.publication-icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background-color: white;
+    color: var(--primary-color);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.publication-icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.1);
+}
+
+.publication-icon-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.publication-icon-label {
+    font-size: 0.75rem;
+    color: white;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
 }
 
 .publication-image {
     width: auto;
     height: 100%;
+    min-width: 200px;
+    max-width: 200px;
     border-radius: 8px;
     overflow: hidden;
     position: relative;
+    flex-shrink: 0;
 }
 
 .publication-image img {
@@ -48,7 +120,10 @@
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
-    padding: 1.5rem 0;
+    padding: 1.5rem;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .publication-card:hover {
@@ -61,6 +136,7 @@
     font-weight: 600;
     color: var(--primary-color);
     line-height: 1.4;
+    margin-bottom: 0.5rem;
 }
 
 .publication-authors {
@@ -71,6 +147,20 @@
     margin-bottom: 0.5rem;
 }
 
+.publication-type {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.publication-date {
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+    font-weight: 400;
+}
+
 .publication-venue {
     font-size: 1rem;
     color: var(--text-color);
@@ -78,38 +168,7 @@
     font-weight: 400;
 }
 
-.publication-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: auto;
-}
 
-.pdf-link,
-.bibtex-link {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background-color: var(--primary-color);
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.pdf-link:hover,
-.bibtex-link:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-1px);
-}
-
-.bibtex-link {
-    background-color: var(--secondary-color);
-}
-
-.bibtex-link:hover {
-    background-color: var(--primary-color);
-}
 
 /* Research-specific styles (추가 스타일) */
 .publication-description {
@@ -180,11 +239,31 @@
     }
     
     .publication-card {
-        padding: 1rem;
+        height: auto;
+        min-height: 200px;
+        flex-direction: column;
+    }
+    
+    .publication-card-overlay {
+        width: 0 !important;
+    }
+    
+    .publication-card:hover .publication-card-overlay {
+        width: 100% !important;
+        height: 60px;
+        top: auto;
+        bottom: 0;
+    }
+    
+    .publication-image {
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        height: 200px;
     }
     
     .publication-title {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
     
     .publication-links {

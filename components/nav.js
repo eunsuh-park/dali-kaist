@@ -10,12 +10,11 @@ const navTemplate = `
             <span></span>
         </button>
         <ul class="nav-links">
-            <li><a href="about.html">About</a></li>
             <li><a href="research.html">Research</a></li>
             <li><a href="publications.html">Publications</a></li>
             <li><a href="members.html">Members</a></li>
             <li><a href="activity.html">Activity</a></li>
-            <li><a href="application.html">Application</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     </div>
     <div class="nav-overlay"></div>
