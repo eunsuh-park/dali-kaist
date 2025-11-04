@@ -1,24 +1,24 @@
 /* Import global styles */
-@import url('../../shared/styles/global.css');
+@import url('../shared/styles/global.css');
 
 /* Import component-specific styles */
-@import url('../../shared/styles/css/sidebar.css');
-@import url('../../shared/styles/css/footer.css');
-@import url('../../shared/styles/css/nav.css');
-@import url('../../shared/styles/css/page-header.css');
-@import url('../../shared/styles/css/publication-cards.css');
-@import url('../../shared/styles/css/publications.css');
-@import url('../../shared/styles/css/chips.css');
-@import url('../../shared/styles/css/gallery.css');
-@import url('../../shared/styles/css/go-top.css');
-@import url('../../shared/styles/css/main-content.css');
+@import url('../shared/styles/css/sidebar.css');
+@import url('../shared/styles/css/footer.css');
+@import url('../shared/styles/css/nav.css');
+@import url('../shared/styles/css/page-header.css');
+@import url('../shared/styles/css/publication-cards.css');
+@import url('../shared/styles/css/publications.css');
+@import url('../shared/styles/css/chips.css');
+@import url('../shared/styles/css/gallery.css');
+@import url('../shared/styles/css/go-top.css');
+@import url('../shared/styles/css/main-content.css');
 
 /* Import page-specific styles */
-@import url('../../shared/styles/css/hero.css');
-@import url('../../shared/styles/css/about.css');
-@import url('../../shared/styles/css/news.css');
-@import url('../../shared/styles/css/contact.css');
-@import url('../../shared/styles/css/research.css');
-@import url('../../shared/styles/css/members.css');
-@import url('../../shared/styles/css/member-detail.css');
-@import url('../../shared/styles/css/activity-detail.css');
+@import url('../shared/styles/css/hero.css');
+@import url('../shared/styles/css/about.css');
+@import url('../shared/styles/css/news.css');
+@import url('../shared/styles/css/contact.css');
+@import url('../shared/styles/css/research.css');
+@import url('../shared/styles/css/members.css');
+@import url('../shared/styles/css/member-detail.css');
+@import url('../shared/styles/css/activity-detail.css');

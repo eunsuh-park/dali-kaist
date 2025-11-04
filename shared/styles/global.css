@@ -30,6 +30,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Firefox 스크롤바 스타일 */
+    scrollbar-width: thin;                  /* 얇은 스크롤바 */
+    scrollbar-color: var(--primary-color) transparent; /* 기본색상 설정 */
 }
 
 /* HTML & Body */
@@ -39,6 +42,7 @@ html {
     /* 사이트 전역 최소 너비 설정 */
     min-width: 320px;
     scroll-behavior: smooth;
+    scrollbar-gutter: stable; /* 스크롤바 유무로 인한 레이아웃 흔들림 방지 */
 }
 
 body {
@@ -52,6 +56,34 @@ body {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+}
+
+/* ✅ WebKit 브라우저 (Chrome, Edge, Safari) 스크롤바 스타일 */
+::-webkit-scrollbar {
+    width: 6px;               /* 가늘게 */
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;  /* 트랙(배경)은 투명하게 */
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-color); /* 기본 상태는 투명 */
+    border-radius: 9999px;          /* 완전 둥근 형태 */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color); /* hover 시 primary-color 적용 */
+}
+
+::-webkit-scrollbar-button {
+    display: none !important; /* 화살표 버튼 제거 */
+}
+
+
+::-webkit-scrollbar-corner {
+    display: none;
 }
 
 /* Main Content */
