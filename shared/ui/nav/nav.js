@@ -12,8 +12,8 @@ function getNavTemplate() {
     const basePath = getBasePath();
     // Determine home page path based on current location
     const currentPath = window.location.pathname;
-    const isAppIndex = currentPath.includes('app/index.html') || currentPath.endsWith('app/') || currentPath.endsWith('app');
-    const homePath = isAppIndex ? 'index.html' : `${basePath}app/index.html`;
+    const isRootIndex = currentPath.includes('index.html') && !currentPath.includes('app/') && !currentPath.includes('pages/');
+    const homePath = isRootIndex ? 'index.html' : `${basePath}index.html`;
     
     return `
 <nav>

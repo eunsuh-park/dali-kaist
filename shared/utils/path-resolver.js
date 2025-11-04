@@ -55,15 +55,15 @@ function getBasePath() {
     // Extract filename from relative path
     const filename = relativePath.split('/').pop() || '';
     
-    // Check if we're in app folder (app/index.html)
-    if (relativePath.includes('app/')) {
-        // If we're in app/index.html, we're at app root
-        // Need to go up one level to reach project root
-        if (filename === 'index.html' && relativePath === 'app/index.html') {
-            return '../';
-        }
-        // If we're in app subdirectory, go up to project root
-        return '../../';
+    // Check if we're at project root (index.html)
+    if (filename === 'index.html' && relativePath === 'index.html') {
+        // At project root, no base path needed
+        return '';
+    }
+    // Check if we're in app folder (app/script.js, etc.)
+    else if (relativePath.includes('app/')) {
+        // From app subdirectory, go up to project root
+        return '../';
     }
     // Check if we're in pages folder (pages/xxx/xxx.html)
     else if (relativePath.includes('pages/')) {
@@ -77,8 +77,8 @@ function getBasePath() {
         const depth = relativePath.split('/').length - 1; // -1 for filename
         return '../'.repeat(depth);
     }
-    // If filename is index.html or empty, we're at root (legacy - should not happen)
-    else if (filename === 'index.html' || filename === '' || relativePath === '') {
+    // If filename is empty or relativePath is empty, we're at root
+    else if (filename === '' || relativePath === '') {
         return '';
     }
     // Otherwise, we're in some subdirectory

@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
     navLinks.forEach(link => {
         const href = link.getAttribute('href');
         // Check if current path includes the href path
-        if (currentPath.includes(href) || (currentPage === '' && href === 'index.html')) {
+        // Handle both index.html at root and in app folder for backward compatibility
+        if (currentPath.includes(href) || (currentPage === '' && (href === 'index.html' || href.includes('index.html')))) {
             link.classList.add('active');
         } else {
             link.classList.remove('active');
