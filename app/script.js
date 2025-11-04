@@ -14,15 +14,39 @@ document.addEventListener('DOMContentLoaded', function() {
     loadComponent('footer-placeholder', footerTemplate);
 
     // Active navigation highlighting (for multi-page setup)
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const currentPath = window.location.pathname;
+    const currentPage = currentPath.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('.nav-links a');
 
     navLinks.forEach(link => {
         const href = link.getAttribute('href');
-        // Check if current path includes the href path
-        // Handle both index.html at root and in app folder for backward compatibility
-        if (currentPath.includes(href) || (currentPage === '' && (href === 'index.html' || href.includes('index.html')))) {
+        let isActive = false;
+        
+        if (href) {
+            // Normalize paths for comparison
+            const normalizedHref = href.toLowerCase().replace(/^[#\/]+/, '').replace(/\/$/, '');
+            const normalizedPath = currentPath.toLowerCase().replace(/^[\/]+/, '').replace(/\/$/, '');
+            
+            // Extract page name from href (e.g., "pages/research/research.html" -> "research")
+            const hrefPage = normalizedHref.split('/').pop()?.replace('.html', '') || '';
+            const pathPage = normalizedPath.split('/').pop()?.replace('.html', '') || '';
+            
+            // Check if current path includes the href
+            if (normalizedPath.includes(normalizedHref) || normalizedHref.includes(normalizedPath)) {
+                isActive = true;
+            }
+            // Check if page names match (e.g., "research" in both)
+            else if (hrefPage && pathPage && (hrefPage === pathPage || pathPage.includes(hrefPage) || hrefPage.includes(pathPage))) {
+                isActive = true;
+            }
+            // Special case for index.html at root
+            else if ((currentPage === '' || currentPage === 'index.html' || normalizedPath.endsWith('index.html') || normalizedPath === '') && 
+                     (normalizedHref === 'index.html' || normalizedHref === '')) {
+                isActive = true;
+            }
+        }
+        
+        if (isActive) {
             link.classList.add('active');
         } else {
             link.classList.remove('active');
