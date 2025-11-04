@@ -1,0 +1,104 @@
+/* ============================================
+   Global Styles
+   ============================================
+   전역 스타일: CSS 변수, 기본 리셋, 기본 타이포그래피, 공통 레이아웃
+   ============================================ */
+
+/* Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@300;400;600&display=swap');
+
+/* CSS Variables */
+:root {
+    --primary-color: #003366;
+    --secondary-color: #656e76;
+    --text-color: #333;
+    --text-color-light: #7f858a;
+    --light-bg: #f8f9fa;
+    --border-color: #e0e0e0;
+    --hover-color: #5e80a30d;
+    /* Height of fixed top navigation; used to offset sticky headers */
+    --nav-height: 64px;
+    /* Width of fixed sidebar (used by page-header as sidebar) */
+    --sidebar-width: 320px;
+    --page-header-height: calc(100vh - var(--nav-height));
+    /* Footer height approximation */
+    --footer-height: 150px;
+}
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* HTML & Body */
+html {
+    height: 100%;
+    box-sizing: border-box;
+    /* 사이트 전역 최소 너비 설정 */
+    min-width: 320px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Tomorrow', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600; /* Semibold as default */
+    line-height: 1.6;
+    color: var(--text-color);
+    min-height: 100%;
+    /* 전역 최소 너비 상속 보조 (구형 브라우저 대비) */
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/* Main Content */
+main {
+    flex: 1;
+}
+
+
+
+/* Common Layout Classes */
+.section {
+    padding: 4rem 2rem;
+}
+
+.container {
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Typography */
+p {
+    font-size: 1rem;
+    line-height: 1.25;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    font-weight: 600;
+}
+
+h4 {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+

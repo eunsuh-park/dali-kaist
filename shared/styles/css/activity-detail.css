@@ -1,0 +1,115 @@
+/* Activity Detail View */
+.activity-detail-view {
+    padding: 2rem 0;
+}
+
+
+.activity-detail-content {
+    margin-top: 2rem;
+}
+
+.activity-image-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+}
+
+.activity-detail-image {
+    flex: 0 0 auto;
+    width: 50%;
+    max-width: 400px;
+}
+
+.activity-placeholder-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #d3d3d3;
+    border-radius: 8px;
+}
+
+.activity-nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--border-color);
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.activity-nav-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.activity-nav-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+.activity-nav-btn-placeholder {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+}
+
+.activity-detail-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.activity-detail-date {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.activity-detail-source {
+    font-size: 0.95rem;
+    color: var(--text-color-light);
+    font-weight: 400;
+}
+
+.activity-detail-description {
+    margin-bottom: 3rem;
+}
+
+.activity-detail-description p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    font-weight: 400;
+}
+
+.activity-detail-actions {
+    margin-top: 2rem;
+}
+
+
+@media (max-width: 1024px) and (min-width: 769px) {
+    .activity-detail-view {
+        margin-top: var(--nav-height);
+    }
+}
+
+/* Responsive for activity detail */
+@media (max-width: 768px) {
+    /* 상세 페이지 상단 마진 추가 (nav 높이 고려) */
+    .activity-detail-view {
+        margin-top: var(--nav-height);
+    }
+}
+

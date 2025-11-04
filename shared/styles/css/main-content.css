@@ -1,0 +1,49 @@
+/* Main Content Common Styles */
+.main-content {
+    padding-bottom: 2rem;
+}
+
+.main-content h3 {
+    margin: 2rem 0;
+}
+
+.main-content h3:first-child {
+    margin-top: 48px;
+}
+
+.main-content ul {
+    margin-left: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.main-content li {
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+}
+
+/* Responsive Design for Main Content */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .main-content h3:first-child {
+        margin-top: calc(var(--nav-height) + 1.5rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content h3:first-child {
+        margin-top: calc(var(--nav-height) + 0.25rem);
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    .section {
+        padding: 3rem 1rem;
+    }
+}
+

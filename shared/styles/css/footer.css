@@ -1,0 +1,123 @@
+/* Footer Styles */
+footer {
+    color: var(--primary-color);
+    text-align: center;
+    padding: 2rem 1rem 1rem 1rem;
+    background-color: var(--light-bg);
+    margin-top: auto; /* footer를 페이지 하단에 고정 */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-info,
+.footer-contact {
+    flex: 1;
+    text-align: left;
+    margin: 0 1rem;
+}
+
+.footer-info p,
+.footer-contact p {
+    font-family: "Libre Baskerville", serif;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.footer-info strong,
+.footer-contact strong {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.footer-copyright {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+}
+
+.footer-copyright p {
+    font-family: "Libre Baskerville", serif;
+    font-size: 0.7rem;
+    color: var(--secondary-color);
+    margin: 0;
+}
+
+/* Responsive Design for Footer */
+
+/* Tablet */
+@media (max-width: 1023px) and (min-width: 768px) {
+    footer {
+        padding: 1.5rem 1.5rem 1rem 1.5rem;
+    }
+    
+    .footer-content {
+        max-width: 100%;
+        gap: 1.5rem;
+    }
+    
+    .footer-info,
+    .footer-contact {
+        margin: 0 0.5rem;
+    }
+    
+    .footer-info p,
+    .footer-contact p {
+        font-size: 0.7rem;
+    }
+    
+    .footer-copyright p {
+        font-size: 0.65rem;
+    }
+}
+
+/* Mobile (≤767px) */
+@media (max-width: 767px) {
+    footer {
+        padding: 1.5rem 1rem 1rem 1rem;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .footer-info,
+    .footer-contact {
+        margin: 0;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .footer-info p,
+    .footer-contact p {
+        font-size: 0.7rem;
+        line-height: 1.5;
+    }
+    
+    .footer-copyright {
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+    
+    .footer-copyright p {
+        font-size: 0.65rem;
+    }
+}

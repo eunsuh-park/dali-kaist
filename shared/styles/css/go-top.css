@@ -1,0 +1,33 @@
+/* Go to Top Button */
+.go-top {
+    position: fixed;
+    right: 4rem;
+    bottom: 4rem;
+    z-index: 1100;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    border: 1px solid var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 0;
+}
+
+.go-top:hover {
+    background-color: black;
+    color: white;
+}
+
+.go-top svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+

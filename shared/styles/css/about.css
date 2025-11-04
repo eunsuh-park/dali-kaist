@@ -1,0 +1,128 @@
+/* About Section */
+.main-content.about-section {
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.main-content.about-section.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.about-intro {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main-content.about-section h3 {
+    text-align: center;
+}
+
+.about-mission {
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.about-highlights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main-content.about-section .about-highlights {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.highlight-item {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid var(--secondary-color);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease;
+}
+
+.highlight-item.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.main-content.about-section.animate .highlight-item:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.main-content.about-section.animate .highlight-item:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.main-content.about-section.animate .highlight-item:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.highlight-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.highlight-item h4 {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-bottom: 0.8rem;
+}
+
+.highlight-item p {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    margin: 0;
+}
+
+/* Responsive Design for About */
+@media (max-width: 768px) {
+    .about-highlights {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        grid-template-rows: repeat(3, 1fr);
+    }
+    
+    .about h3 {
+        font-size: 1.5rem;
+    }
+    
+    .about-intro {
+        font-size: 1.1rem;
+    }
+    
+    .about-mission {
+        font-size: 1rem;
+    }
+}
+

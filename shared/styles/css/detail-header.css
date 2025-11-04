@@ -1,0 +1,37 @@
+/* Detail Header Component */
+.detail-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.detail-header-title {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin: 0;
+    font-weight: 700;
+    flex: 1;
+}
+
+/* Activity style: title with date */
+.detail-header-title-with-date {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.detail-header-title-text {
+    flex: 0 0 auto;
+}
+
+.detail-header-title-date {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-color-light);
+}
+

@@ -1,0 +1,18 @@
+/* Publications Section */
+.publication-year {
+    margin-bottom: 2.5rem;
+}
+
+/* Ensure publication anchors appear below fixed top nav */
+.publication-year {
+    scroll-margin-top: calc(var(--nav-height) + 12px);
+}
+
+/* Publication sidebar year count */
+.year-count {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--text-color-light);
+    margin-left: 0.25rem;
+}
+

@@ -1,0 +1,123 @@
+/* Member Detail View */
+.member-detail-view {
+    padding: 2rem 0;
+}
+
+
+.member-detail-content {
+    margin-top: 2rem;
+}
+
+.member-detail-layout {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+.member-detail-image {
+    flex: 0 0 auto;
+    width: 225px;
+    border-radius: 8px;
+    overflow: visible;
+    position: sticky;
+    top: calc(var(--nav-height) + 2rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.member-detail-image img,
+.member-detail-placeholder {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.member-detail-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.member-detail-actions .affiliated-profile-btn {
+    flex: 1;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.member-detail-actions .affiliated-profile-btn:hover {
+    background-color: #004080;
+    color: white;
+}
+
+.member-detail-actions .affiliated-email-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.member-detail-actions .affiliated-email-btn:hover {
+    background-color: #004080;
+    color: white;
+}
+
+.member-detail-placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #d3d3d3;
+    border-radius: 8px;
+}
+
+.member-detail-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.member-detail-description {
+    margin-bottom: 3rem;
+}
+
+.member-detail-description p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    font-weight: 400;
+}
+
+.member-detail-skills h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+    .member-detail-view {
+        margin-top: var(--nav-height);
+    }
+}
+
+
+/* Responsive for member detail */
+@media (max-width: 768px) {
+    .member-detail-layout {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .member-detail-image {
+        width: 100%;
+        max-width: 225px;
+        margin: 0 auto;
+        position: static;
+    }
+
+    /* 상세 페이지 상단 마진 추가 (nav 높이 고려) */
+    .member-detail-view {
+        margin-top: var(--nav-height);
+    }
+}
+
