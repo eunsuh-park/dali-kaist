@@ -53,9 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Go to Top 버튼 주입 (상세 페이지가 있는 페이지: members/members.html, activity/activity.html, publications/publications.html에만)
-    const pagesWithDetailView = ['members/members.html', 'members.html', 'activity/activity.html', 'activity.html', 'publications/publications.html', 'publications.html'];
-    if (pagesWithDetailView.includes(currentPage) || currentPath.includes('pages/members/') || currentPath.includes('pages/activity/') || currentPath.includes('pages/publications/')) {
+    // Go to Top 버튼 주입 (상세 페이지가 있는 페이지: activity/activity.html, publications/publications.html에만)
+    const pagesWithDetailView = ['activity/activity.html', 'activity.html', 'publications/publications.html', 'publications.html'];
+    if (pagesWithDetailView.includes(currentPage) || currentPath.includes('pages/activity/') || currentPath.includes('pages/publications/')) {
         const btn = document.createElement('button');
         btn.className = 'go-top';
         btn.setAttribute('aria-label', 'Go to top');

@@ -82,6 +82,17 @@
         -webkit-backdrop-filter: blur(20px);
         border-radius: 20px 20px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        transform: translateX(0);
+        opacity: 1;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    
+    /* 상세 페이지가 열렸을 때 사이드바 숨김 (슬라이드 아웃) */
+    .publications-page.detail-view-open .sidebar-menu,
+    .members-page.detail-view-open .sidebar-menu {
+        transform: translateX(120px);
+        opacity: 0;
+        pointer-events: none;
     }
     
     .publications-page .sidebar-menu li {
@@ -136,7 +147,11 @@
         -webkit-backdrop-filter: blur(20px);
         border-radius: 20px 20px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        transform: translateX(0);
+        opacity: 1;
+        transition: transform 0.3s ease, opacity 0.3s ease;
     }
+    
     
     .members-page .sidebar-menu li {
         margin: 0;
@@ -222,5 +237,10 @@
     .page-header {
         padding: 0.75rem 16px !important; /* 모바일에서도 좌우 0 유지 */
         background-color: white !important;
+    }
+
+    .publications-page .sidebar-menu,
+    .members-page .sidebar-menu {
+        bottom: 20px;
     }
 }

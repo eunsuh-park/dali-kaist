@@ -1,0 +1,44 @@
+/* Detail Content Component */
+/* 상세페이지 컨텐츠 영역의 공통 스타일 */
+
+/* Detail View Container */
+.detail-view {
+    padding: 2rem 0;
+}
+
+/* Detail Content */
+.detail-content,
+.member-detail-content,
+.activity-detail-content {
+    margin-top: 2rem;
+}
+
+/* Detail Description */
+.detail-description,
+.member-detail-description,
+.activity-detail-description {
+    margin-bottom: 3rem;
+}
+
+.detail-description p,
+.member-detail-description p,
+.activity-detail-description p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    font-weight: 400;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .detail-view {
+        margin-top: calc(var(--nav-height) + 0.75rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .detail-view {
+        margin-top: calc(var(--nav-height) - 0.25rem);
+    }
+}
+

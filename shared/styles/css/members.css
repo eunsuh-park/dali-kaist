@@ -161,7 +161,6 @@
 
 .affiliated-profile-btn:hover {
     background-color: rgba(255, 255, 255, 0.9);
-    transform: translateY(-2px);
 }
 
 .affiliated-email-btn {
@@ -180,7 +179,6 @@
 
 .affiliated-email-btn:hover {
     background-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
 }
 
 .affiliated-email-btn svg {
@@ -379,3 +377,109 @@
     }
 }
 
+/* Member Detail View */
+/* Common styles (padding, margin-top) are handled by .detail-view and .detail-content in detail-content.css */
+
+.member-detail-layout {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+.member-detail-image {
+    flex: 0 0 auto;
+    width: 225px;
+    border-radius: 8px;
+    overflow: visible;
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.member-detail-image img,
+.member-detail-placeholder {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.member-detail-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.member-detail-actions .affiliated-profile-btn {
+    flex: 1;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.member-detail-actions .affiliated-profile-btn:hover {
+    background-color: #004080;
+    color: white;
+}
+
+.member-detail-actions .affiliated-email-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.member-detail-actions .affiliated-email-btn:hover {
+    background-color: #004080;
+    color: white;
+}
+
+.member-detail-placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #d3d3d3;
+    border-radius: 8px;
+}
+
+.member-detail-text {
+    flex: 1;
+    min-width: 0;
+}
+
+/* .member-detail-description common styles are handled by .detail-description in detail-content.css */
+
+.member-detail-skills h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* Responsive for member detail */
+@media (max-width: 768px) {
+    .member-detail-layout {
+        flex-direction: column;
+        gap: 2rem;
+        width: 100%;
+    }
+    
+    .member-detail-image {
+        width: 100%;
+        max-width: 225px;
+        margin: 0 auto;
+        position: static;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .member-detail-image img {
+        width: 60%;
+    }
+
+    .member-detail-actions {
+        width: 100%;
+        margin-top:0;
+    }
+}

@@ -1,6 +1,18 @@
-const footerTemplate = `
+// Path resolver is expected to be loaded before this file
+// getBasePath() function is defined in shared/utils/path-resolver.js
+// If getBasePath is not defined, define a fallback
+if (typeof getBasePath === 'undefined') {
+    console.warn('getBasePath() not found. Make sure path-resolver.js is loaded before footer.js');
+    function getBasePath() {
+        return '';
+    }
+}
+
+function getFooterTemplate() {
+    const basePath = getBasePath();
+    return `
 <footer>
-    <div class="container">
+    <div class="footer-container">
         <div class="footer-content">
             <div class="footer-info">
                 <p><strong>Debiasing and Lay Informatics Lab</strong><br>
@@ -15,3 +27,7 @@ const footerTemplate = `
     </div>
 </footer>
 `;
+}
+
+// For backward compatibility
+const footerTemplate = getFooterTemplate();

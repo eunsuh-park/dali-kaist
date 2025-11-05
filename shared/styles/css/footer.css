@@ -2,43 +2,56 @@
 footer {
     color: var(--primary-color);
     text-align: center;
-    padding: 2rem 1rem 1rem 1rem;
+    padding: 2rem 0rem 1rem 0rem;
     background-color: var(--light-bg);
     margin-top: auto; /* footer를 페이지 하단에 고정 */
     width: 100%;
     box-sizing: border-box;
 }
 
-footer .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0;
+footer .footer-container {
+    padding-left: 3rem;
     box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: var(--sidebar-width);
+    padding-left: 4rem;
 }
 
+/* 
+    display: flex: footer 내부 레이아웃을 플렉스 컨테이너로 만들어, 한 줄 배치와 정렬이 용이하게 함.
+    justify-content: space-between: 좌우로 footer의 정보 영역(.footer-info)와 연락처 영역(.footer-contact)을 최대한 띄워 양끝에 배치.
+    align-items: flex-start: 각 영역이 위(Top) 기준으로 정렬되어 footer의 높이가 불필요하게 커지는 것을 방지.
+    margin-left/right: auto: 외부 컨테이너에서 footer-content를 중앙 정렬(수평)함.
+    -> 즉, footer 정보를 좌우에 배치하고 전체적으로 예쁜 정렬과 공간 분배를 위해 flex와 space-between을 사용함.
+*/
 .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    width: auto;
+    box-sizing: border-box;
 }
 
 .footer-info,
 .footer-contact {
     flex: 1;
     text-align: left;
-    margin: 0 1rem;
+    width: 100%;
 }
+
+.footer-container {
+    width: 100%;
+}
+
 
 .footer-info p,
 .footer-contact p {
-    font-family: "Libre Baskerville", serif;
     font-size: 0.75rem;
     line-height: 1.4;
     margin-bottom: 0.5rem;
     color: var(--text-color);
+    width: 100%;
 }
 
 .footer-info strong,
@@ -53,7 +66,6 @@ footer .container {
 }
 
 .footer-copyright p {
-    font-family: "Libre Baskerville", serif;
     font-size: 0.7rem;
     color: var(--secondary-color);
     margin: 0;
@@ -64,60 +76,51 @@ footer .container {
 /* Tablet */
 @media (max-width: 1023px) and (min-width: 768px) {
     footer {
-        padding: 1.5rem 1.5rem 1rem 1.5rem;
+        width: 100vw;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
-    
+
     .footer-content {
-        max-width: 100%;
-        gap: 1.5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 2rem;
+        padding: 0 !important;
+        margin: 0 !important;
     }
-    
-    .footer-info,
-    .footer-contact {
-        margin: 0 0.5rem;
-    }
-    
-    .footer-info p,
-    .footer-contact p {
-        font-size: 0.7rem;
-    }
-    
-    .footer-copyright p {
-        font-size: 0.65rem;
+
+    .footer-container {
+        margin:0 !important;
+        padding-left: 2rem !important;
     }
 }
 
 /* Mobile (≤767px) */
 @media (max-width: 767px) {
     footer {
-        padding: 1.5rem 1rem 1rem 1rem;
-    }
-    
-    .footer-content {
+        width: 100vw;
+        box-sizing: border-box;
+        display: flex;
         flex-direction: column;
-        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer-content {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
         gap: 1rem;
+        padding: 0 !important;
+        margin: 0 !important;
     }
-    
-    .footer-info,
-    .footer-contact {
-        margin: 0;
-        text-align: center;
-        width: 100%;
-    }
-    
-    .footer-info p,
-    .footer-contact p {
-        font-size: 0.7rem;
-        line-height: 1.5;
-    }
-    
-    .footer-copyright {
-        margin-top: 1rem;
-        padding-top: 1rem;
-    }
-    
-    .footer-copyright p {
-        font-size: 0.65rem;
+
+    .footer-container {
+        margin:0 !important;
+        padding-left: 1rem !important;
     }
 }

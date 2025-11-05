@@ -35,7 +35,14 @@
     color: var(--text-color-light);
 }
 
+/* Hide date when not provided */
+.detail-header-title-date:empty {
+    display: none;
+}
+
 @media (max-width: 1024px) and (min-width: 769px) {
+    .detail-header {
+    }
 }
 
 @media (max-width: 768px) {
@@ -44,5 +51,9 @@
         align-items: flex-start;
         justify-content: flex-start;
         gap: 0;
+    }
+
+    .detail-header {
+        margin-top: 0;
     }
 }

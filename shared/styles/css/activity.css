@@ -1,12 +1,5 @@
 /* Activity Detail View */
-.activity-detail-view {
-    padding: 2rem 0;
-}
-
-
-.activity-detail-content {
-    margin-top: 2rem;
-}
+/* Common styles (padding, margin-top) are handled by .detail-view and .detail-content in detail-content.css */
 
 .activity-image-container {
     display: flex;
@@ -71,47 +64,20 @@
     border-bottom: 1px solid var(--border-color);
 }
 
-.activity-detail-date {
-    font-size: 1rem;
-    color: var(--secondary-color);
-    font-weight: 600;
-}
-
 .activity-detail-source {
     font-size: 0.95rem;
     color: var(--text-color-light);
     font-weight: 400;
 }
 
-.activity-detail-description {
-    margin-bottom: 3rem;
-}
-
-.activity-detail-description p {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: var(--text-color);
-    font-weight: 400;
-}
+/* .activity-detail-description common styles are handled by .detail-description in detail-content.css */
+/* Note: Date is displayed in detail-header component via .detail-header-title-date */
 
 .activity-detail-actions {
-    margin-top: 2rem;
-}
-
-
-@media (max-width: 1024px) and (min-width: 769px) {
-    .activity-detail-view {
-        margin-top: var(--nav-height);
-    }
 }
 
 /* Responsive for activity detail */
 @media (max-width: 768px) {
-    /* 상세 페이지 상단 마진 추가 (nav 높이 고려) */
-    .activity-detail-view {
-        margin-top: var(--nav-height);
-    }
-
-    
+    /* Additional responsive styles can be added here if needed */
 }
 

@@ -33,9 +33,12 @@ function getDetailHeaderTemplate(options) {
             </h2>
         `;
     } else {
-        // Default style: title only
+        // Default style: title only (date span is included but empty for CSS hiding)
         titleHtml = `
-            <h2 class="detail-header-title" ${titleId ? `id="${titleId}"` : ''}>${title}</h2>
+            <h2 class="detail-header-title" ${titleId ? `id="${titleId}"` : ''}>
+                <span class="detail-header-title-text">${title}</span>
+                <span class="detail-header-title-date"></span>
+            </h2>
         `;
     }
 

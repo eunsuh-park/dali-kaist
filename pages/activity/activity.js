@@ -154,6 +154,56 @@ function getNextActivityId(currentId) {
 // Store current activity ID
 let currentActivityId = null;
 
+/**
+ * Initialize detail header using detail-header component
+ * @param {string} parentElementId - 상위 요소의 ID (페이지명이 포함된 요소, 예: 'member-detail', 'activity-detail')
+ * @param {Object} options - 헤더 옵션
+ * @param {string} options.title - 제목 텍스트
+ * @param {string} [options.date] - 날짜 (선택사항, activity 상세에서는 사용)
+ * @param {string} options.backButtonId - 뒤로가기 버튼의 ID
+ * @param {string} options.backButtonAriaLabel - 뒤로가기 버튼의 aria-label
+ * @param {Function} options.onBackClick - 뒤로가기 버튼 클릭 핸들러
+ */
+function initializeDetailHeader(parentElementId, options) {
+    // Find parent element by ID
+    const parentElement = document.getElementById(parentElementId);
+    if (!parentElement || typeof getDetailHeaderTemplate === 'undefined') {
+        return;
+    }
+    
+    // Find detail-header element inside parent
+    const headerElement = parentElement.querySelector('#detail-header');
+    if (!headerElement) {
+        return;
+    }
+    
+    const {
+        title,
+        date,
+        backButtonId,
+        backButtonAriaLabel,
+        onBackClick,
+        titleId = ''
+    } = options;
+    
+    // Create header using detail-header component
+    const headerHtml = getDetailHeaderTemplate({
+        backButtonId: backButtonId,
+        backButtonAriaLabel: backButtonAriaLabel,
+        title: title,
+        date: date, // Activity에서는 date를 표시
+        titleId: titleId
+    });
+    
+    headerElement.innerHTML = headerHtml;
+    
+    // Add click handler for back button
+    const backButton = document.getElementById(backButtonId);
+    if (backButton && onBackClick) {
+        backButton.addEventListener('click', onBackClick);
+    }
+}
+
 // Show activity detail
 function showActivityDetail(activityId) {
     const activityList = document.getElementById('activity-content');
@@ -173,24 +223,18 @@ function showActivityDetail(activityId) {
     // Show detail view
     activityDetail.style.display = 'block';
     
-    // Create and insert detail header with back button and title (with date)
-    const headerElement = document.getElementById('activity-detail-header');
-    if (headerElement) {
-        const headerHtml = getDetailHeaderTemplate({
-            backButtonId: 'back-to-activities',
-            backButtonAriaLabel: 'Back to activities list',
-            title: activityInfo.title,
-            date: activityInfo.date,
-            titleId: 'activity-detail-name'
-        });
-        headerElement.innerHTML = headerHtml;
-        
-        // Add click handler for back button
-        const backButton = document.getElementById('back-to-activities');
-        if (backButton) {
-            backButton.addEventListener('click', showActivitiesList);
-        }
-    }
+    // Add class to body to hide sidebar on tablet/mobile
+    document.body.classList.add('detail-view-open');
+    
+    // Initialize detail header using detail-header component
+    initializeDetailHeader('activity-detail', {
+        title: activityInfo.title,
+        date: activityInfo.date, // Activity는 date 표시
+        backButtonId: 'back-to-activities',
+        backButtonAriaLabel: 'Back to activities list',
+        onBackClick: showActivitiesList,
+        titleId: 'activity-detail-name'
+    });
     
     // Get previous and next IDs
     const prevId = getPreviousActivityId(activityId);
@@ -273,6 +317,9 @@ function showActivitiesList() {
     activityList.style.display = 'block';
     activityDetail.style.display = 'none';
     
+    // Remove class from body to show sidebar on tablet/mobile
+    document.body.classList.remove('detail-view-open');
+    
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -289,7 +336,5 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    // Back button will be created dynamically when detail view is shown
 });
 

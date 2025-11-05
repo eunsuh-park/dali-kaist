@@ -132,6 +132,56 @@ const affiliatedMemberData = {
     }
 };
 
+/**
+ * Initialize detail header using detail-header component
+ * @param {string} parentElementId - 상위 요소의 ID (페이지명이 포함된 요소, 예: 'member-detail', 'activity-detail')
+ * @param {Object} options - 헤더 옵션
+ * @param {string} options.title - 제목 텍스트
+ * @param {string} [options.date] - 날짜 (선택사항, member 상세에서는 사용하지 않음)
+ * @param {string} options.backButtonId - 뒤로가기 버튼의 ID
+ * @param {string} options.backButtonAriaLabel - 뒤로가기 버튼의 aria-label
+ * @param {Function} options.onBackClick - 뒤로가기 버튼 클릭 핸들러
+ */
+function initializeDetailHeader(parentElementId, options) {
+    // Find parent element by ID
+    const parentElement = document.getElementById(parentElementId);
+    if (!parentElement || typeof getDetailHeaderTemplate === 'undefined') {
+        return;
+    }
+    
+    // Find detail-header element inside parent
+    const headerElement = parentElement.querySelector('#detail-header');
+    if (!headerElement) {
+        return;
+    }
+    
+    const {
+        title,
+        date,
+        backButtonId,
+        backButtonAriaLabel,
+        onBackClick,
+        titleId = ''
+    } = options;
+    
+    // Create header using detail-header component
+    const headerHtml = getDetailHeaderTemplate({
+        backButtonId: backButtonId,
+        backButtonAriaLabel: backButtonAriaLabel,
+        title: title,
+        date: date, // undefined for members (no date display)
+        titleId: titleId
+    });
+    
+    headerElement.innerHTML = headerHtml;
+    
+    // Add click handler for back button
+    const backButton = document.getElementById(backButtonId);
+    if (backButton && onBackClick) {
+        backButton.addEventListener('click', onBackClick);
+    }
+}
+
 // Show member detail
 function showMemberDetail(memberId) {
     const memberList = document.getElementById('members-content');
@@ -149,24 +199,18 @@ function showMemberDetail(memberId) {
     // Show detail view
     memberDetail.style.display = 'block';
     
-    // Create and insert detail header with back button and title (no date)
-    const headerElement = document.getElementById('member-detail-header');
-    if (headerElement) {
-        const headerHtml = getDetailHeaderTemplate({
-            backButtonId: 'back-to-members',
-            backButtonAriaLabel: 'Back to members list',
-            title: memberInfo.name,
-            date: undefined, // No date for members
-            titleId: 'member-detail-name'
-        });
-        headerElement.innerHTML = headerHtml;
-        
-        // Add click handler for back button
-        const backButton = document.getElementById('back-to-members');
-        if (backButton) {
-            backButton.addEventListener('click', showMembersList);
-        }
-    }
+    // Add class to body to hide sidebar on tablet/mobile
+    document.body.classList.add('detail-view-open');
+    
+    // Initialize detail header using detail-header component
+    initializeDetailHeader('member-detail', {
+        title: memberInfo.name,
+        date: undefined, // No date for members
+        backButtonId: 'back-to-members',
+        backButtonAriaLabel: 'Back to members list',
+        onBackClick: showMembersList,
+        titleId: 'member-detail-name'
+    });
     
     // Build detail content
     const detailContent = document.getElementById('member-detail-info');
@@ -226,6 +270,9 @@ function showMembersList() {
     
     memberList.style.display = 'block';
     memberDetail.style.display = 'none';
+    
+    // Remove class from body to show sidebar on tablet/mobile
+    document.body.classList.remove('detail-view-open');
     
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -336,7 +383,5 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, 100);
     });
-    
-    // Back button will be created dynamically when detail view is shown
 });
 
