@@ -15,7 +15,7 @@ styles/
     ├── page-header.css
     ├── publication-cards.css
     ├── chips.css
-    ├── gallery.css
+    ├── activity-gallery.css
     └── go-top.css
 
 각 파일의 역할:
@@ -34,7 +34,7 @@ styles/
    - page-header.css: 페이지 헤더 스타일
    - publication-cards.css: 출판물 카드 스타일
    - chips.css: 칩(태그) 스타일
-   - gallery.css: 갤러리 스타일
+   - activity-gallery.css: 액티비티 갤러리 스타일
    - go-top.css: Go to Top 버튼 스타일
 
 사용 방법:

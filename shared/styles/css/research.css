@@ -112,8 +112,7 @@
 
 @media (max-width: 768px) {
     .research-cards-container {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: repeat(1, 1fr);
     }
     
     .research-card {
@@ -124,7 +123,7 @@
         font-size: 1.2rem;
     }
     .research-cards-container {
-        margin-top: var(--nav-height);
+        margin-top: calc(var(--nav-height) - 1rem);
     }
 }
 

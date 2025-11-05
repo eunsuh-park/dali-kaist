@@ -156,7 +156,7 @@ let currentActivityId = null;
 
 // Show activity detail
 function showActivityDetail(activityId) {
-    const activityList = document.getElementById('activity-list');
+    const activityList = document.getElementById('activity-content');
     const activityDetail = document.getElementById('activity-detail');
     const activityInfo = activityDetails[activityId];
     
@@ -267,7 +267,7 @@ function showActivityDetail(activityId) {
 
 // Back to activities list
 function showActivitiesList() {
-    const activityList = document.getElementById('activity-list');
+    const activityList = document.getElementById('activity-content');
     const activityDetail = document.getElementById('activity-detail');
     
     activityList.style.display = 'block';

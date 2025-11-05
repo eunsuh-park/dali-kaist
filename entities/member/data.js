@@ -134,7 +134,7 @@ const affiliatedMemberData = {
 
 // Show member detail
 function showMemberDetail(memberId) {
-    const memberList = document.getElementById('members-list');
+    const memberList = document.getElementById('members-content');
     const memberDetail = document.getElementById('member-detail');
     const memberInfo = memberDetails[memberId];
     
@@ -203,7 +203,7 @@ function showMemberDetail(memberId) {
 
 // Back to members list
 function showMembersList() {
-    const memberList = document.getElementById('members-list');
+    const memberList = document.getElementById('members-content');
     const memberDetail = document.getElementById('member-detail');
     
     memberList.style.display = 'block';

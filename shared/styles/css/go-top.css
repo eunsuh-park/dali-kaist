@@ -30,4 +30,17 @@
     display: block;
 }
 
+@media (max-width: 1024px) and (min-width: 769px) {
+    .go-top {
+        right: 2rem;
+        bottom: 2rem;
+    }
+}
 
+
+@media (max-width: 768px) {
+    .go-top {
+        right: 1rem;
+        bottom: 2rem;
+    }
+}

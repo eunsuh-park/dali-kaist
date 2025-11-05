@@ -23,3 +23,17 @@
     height: 20px;
 }
 
+/* Tablet */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .back-button {
+        margin-top: 0.5rem;
+    }
+}
+
+/* Mobile (≤767px) */
+@media (max-width: 767px) {
+    .back-button {
+        margin-top: 0.5rem;
+    }
+}
+

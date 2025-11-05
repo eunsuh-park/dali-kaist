@@ -134,7 +134,7 @@ const affiliatedMemberData = {
 
 // Show member detail
 function showMemberDetail(memberId) {
-    const memberList = document.getElementById('members-list');
+    const memberList = document.getElementById('members-content');
     const memberDetail = document.getElementById('member-detail');
     const memberInfo = memberDetails[memberId];
     
@@ -221,7 +221,7 @@ function showMemberDetail(memberId) {
 
 // Back to members list
 function showMembersList() {
-    const memberList = document.getElementById('members-list');
+    const memberList = document.getElementById('members-content');
     const memberDetail = document.getElementById('member-detail');
     
     memberList.style.display = 'block';
@@ -258,6 +258,83 @@ document.addEventListener('DOMContentLoaded', function() {
                 showMemberDetail(memberId);
             }
         });
+    });
+    
+    // Affiliated members: 클릭 토글 및 자동 숨김 (타블렛/모바일)
+    const affiliatedMembers = document.querySelectorAll('.affiliated-member');
+    const activeTimeouts = new Map(); // 각 멤버별 타이머 저장
+    
+    // 화면 크기 확인 함수
+    function isTabletOrMobile() {
+        return window.innerWidth <= 1024;
+    }
+    
+    affiliatedMembers.forEach(member => {
+        member.addEventListener('click', function(e) {
+            // 링크 클릭 시에는 상세 페이지로 이동
+            if (e.target.tagName === 'A' || e.target.closest('a')) {
+                return;
+            }
+            
+            // 타블렛/모바일에서만 클릭 토글 작동
+            if (!isTabletOrMobile()) {
+                return;
+            }
+            
+            e.stopPropagation();
+            
+            // 현재 멤버의 기존 타이머 취소
+            const memberId = this.getAttribute('data-affiliated-id');
+            if (activeTimeouts.has(memberId)) {
+                clearTimeout(activeTimeouts.get(memberId));
+                activeTimeouts.delete(memberId);
+            }
+            
+            // 현재 상태 확인
+            const isActive = this.classList.contains('active');
+            
+            // 다른 모든 affiliated-member의 active 제거 및 타이머 취소
+            affiliatedMembers.forEach(m => {
+                if (m !== this) {
+                    m.classList.remove('active');
+                    const otherId = m.getAttribute('data-affiliated-id');
+                    if (activeTimeouts.has(otherId)) {
+                        clearTimeout(activeTimeouts.get(otherId));
+                        activeTimeouts.delete(otherId);
+                    }
+                }
+            });
+            
+            // 토글
+            if (isActive) {
+                this.classList.remove('active');
+            } else {
+                this.classList.add('active');
+                
+                // 5초 후 자동으로 숨김
+                const timeoutId = setTimeout(() => {
+                    this.classList.remove('active');
+                    activeTimeouts.delete(memberId);
+                }, 5000);
+                activeTimeouts.set(memberId, timeoutId);
+            }
+        });
+    });
+    
+    // 화면 크기 변경 시 active 상태 초기화
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            if (!isTabletOrMobile()) {
+                affiliatedMembers.forEach(member => {
+                    member.classList.remove('active');
+                });
+                // 모든 타이머 취소
+                activeTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
+                activeTimeouts.clear();
+            }
+        }, 100);
     });
     
     // Back button will be created dynamically when detail view is shown

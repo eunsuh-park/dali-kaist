@@ -109,7 +109,7 @@
     }
     
     .member-detail-image {
-        width: 100%;
+        width: 50%;
         max-width: 225px;
         margin: 0 auto;
         position: static;

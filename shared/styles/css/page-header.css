@@ -7,7 +7,7 @@
     height: calc(100vh - var(--nav-height));
     z-index: 900; /* Below nav (1000) but above content */
     background-color: #fff;
-    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
     padding: 1.5rem 1.75rem;
 }
 
@@ -17,9 +17,6 @@
 
 /* Tablet */
 @media (max-width: 1023px) and (min-width: 768px) {
-    .page-header {
-        border-bottom: 1px solid var(--border-color);
-    }
     .page-header h2 {
         margin : 0;
     }
@@ -27,9 +24,6 @@
 
 /* Mobile (≤767px): 모바일 S/M 통합 */
 @media (max-width: 767px) {
-    .page-header {
-        border-bottom: 1px solid var(--border-color);
-    }
     .page-header h2 {
         font-size: 1.5rem;
         margin : 0;

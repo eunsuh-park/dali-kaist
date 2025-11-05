@@ -302,9 +302,30 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
     }
+
+    .member .chips-container {
+        justify-content: center;
+    }
+    
+    #members-content {
+        padding-top: 2rem !important;
+    }
+
+    /* 타블렛: hover 대신 active 클래스 사용 */
+    .affiliated-member:hover .affiliated-hover-content {
+        transform: translateY(100%);
+    }
+
+    .affiliated-member.active .affiliated-hover-content {
+        transform: translateY(0);
+    }
 }
 
 @media (max-width: 768px) {
+    #members-content {
+        padding-top: 2rem !important;
+    }
+
     .members-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
@@ -342,6 +363,19 @@
     .member-photo {
         width: 90px;
         height: 120px;
+    }
+
+    .member .chips-container {
+        justify-content: center;
+    }
+
+    /* 모바일: hover 대신 active 클래스 사용 */
+    .affiliated-member:hover .affiliated-hover-content {
+        transform: translateY(100%);
+    }
+
+    .affiliated-member.active .affiliated-hover-content {
+        transform: translateY(0);
     }
 }
 
