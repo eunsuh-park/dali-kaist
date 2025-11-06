@@ -17,6 +17,7 @@
     <!-- Page-specific Styles for index.html -->
     <link rel="stylesheet" href="shared/styles/css/hero.css">
     <link rel="stylesheet" href="shared/styles/css/about.css">
+    <link rel="stylesheet" href="shared/styles/css/action-button.css">
 </head>
 <body>
     <div id="nav-placeholder"></div>
@@ -37,23 +38,34 @@
             </div>
         </section>
         <div class="main-content about-section" id="about-section">
-            <h3>About the Lab</h3>
-            <p class="about-intro">The DaLI (Debiasing and Lay Informatics) Lab tackles pressing information challenges of our time,<br>including pseudo-information, public biases, and failing information markets.<br>
-            We conduct research on publics and their communicative behaviors<br>to promote a healthy information ecosystem for a sustainable future.</p>
+            <h1>About the Lab</h1>
+            <p class="about-intro">
+            We conduct research on publics and their communicative behaviors<br>to promote a healthy information ecosystem for a sustainable future.
+            <br>We tackle pressing information challenges of our time,<br>including pseudo-information, public biases, and failing information markets.</p>
             <div class="about-highlights">
                 <div class="highlight-item">
-                    <h4>Research Focus</h4>
-                    <p>Understanding how and why publics engage in communicative actions, examining proactiveness and reactiveness in information acquisition, selection, and transmission.</p>
+                    <div class="highlight-content">
+                        <h4>Research Focus</h4>
+                        <p>Understanding how and why publics engage in communicative actions, examining proactiveness and reactiveness in information acquisition, selection, and transmission.</p>
+                    </div>
+                    <div class="highlight-image"></div>
                 </div>
                 <div class="highlight-item">
-                    <h4>Mission</h4>
-                    <p>Developing theoretical frameworks and practical solutions to address cognitive biases, epistemic inertia, and information market failures in our digital age.</p>
+                    <div class="highlight-content">
+                        <h4>Mission</h4>
+                        <p>Developing theoretical frameworks and practical solutions to address cognitive biases, epistemic inertia, and information market failures in our digital age.</p>
+                    </div>
+                    <div class="highlight-image"></div>
                 </div>
                 <div class="highlight-item">
-                    <h4>Impact</h4>
-                    <p>Contributing to a more informed and resilient society through evidence-based research and strategic communication interventions.</p>
+                    <div class="highlight-content">
+                        <h4>Impact</h4>
+                        <p>Contributing to a more informed and resilient society through evidence-based research and strategic communication interventions.</p>
+                    </div>
+                    <div class="highlight-image"></div>
                 </div>
             </div>
+            <div class="about-action" id="about-action-button"></div>
         </div>
     </main>
 
@@ -62,6 +74,7 @@
     <script src="shared/utils/path-resolver.js"></script>
     <script src="shared/ui/nav/nav.js"></script>
     <script src="shared/ui/footer/footer.js"></script>
+    <script src="shared/ui/action-button/action-button.js"></script>
     <script src="app/script.js"></script>
 </body>
 </html>

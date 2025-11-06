@@ -2,9 +2,8 @@
 .main-content.about-section {
     text-align: center;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 2rem auto;
     padding: 2rem;
-    margin-bottom: 2rem;
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
@@ -17,18 +16,20 @@
 
 .about-intro {
     font-weight: 400;
-    font-size: 1rem;
+    font-size: 1.25rem;
     line-height: 1.8;
     color: var(--text-color);
     text-align: center;
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.main-content.about-section h3 {
+.main-content.about-section h1 {
     text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
 }
 
 .about-mission {
@@ -42,9 +43,10 @@
 
 .about-highlights {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 2rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top:8rem;
+    margin-bottom: 8rem;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
@@ -57,8 +59,9 @@
 }
 
 .highlight-item {
+    display: flex;
+    flex-direction: row;
     background-color: white;
-    padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border-color);
     opacity: 0;
@@ -85,22 +88,52 @@
 
 .highlight-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.highlight-image {
+    width: 30%;
+    height: 100%;
+    background-color: #808080;
+}
+
+.highlight-content {
+    width:70%;
+    height: 200px;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
 }
 
 .highlight-item h4 {
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     color: var(--primary-color);
     margin-bottom: 0.8rem;
+    text-align: left;
+    width: 280px;
 }
 
 .highlight-item p {
+    width: 80%;
     font-weight: 400;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     line-height: 1.6;
     color: var(--text-color);
     margin: 0;
+    text-align: left;
+}
+
+.about-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
 }
 
 /* Responsive Design for About */
@@ -108,7 +141,6 @@
     .about-highlights {
         grid-template-columns: 1fr;
         gap: 1.5rem;
-        grid-template-rows: repeat(3, 1fr);
     }
     
     .about h3 {

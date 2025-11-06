@@ -53,9 +53,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Go to Top 버튼 주입 (상세 페이지가 있는 페이지: activity/activity.html, publications/publications.html에만)
-    const pagesWithDetailView = ['activity/activity.html', 'activity.html', 'publications/publications.html', 'publications.html'];
-    if (pagesWithDetailView.includes(currentPage) || currentPath.includes('pages/activity/') || currentPath.includes('pages/publications/')) {
+    // Go to Top 버튼 주입 (activity, publications, index 페이지에 추가)
+    const pagesWithDetailView = ['activity/activity.html', 'activity.html', 'publications/publications.html', 'publications.html', 'index.html', 'index'];
+    const isIndexPage = (currentPage === '' || currentPage === 'index.html' || currentPage === 'index' || currentPath === '' || currentPath.endsWith('index.html') || currentPath.endsWith('/'));
+    if (pagesWithDetailView.includes(currentPage) || currentPath.includes('pages/activity/') || currentPath.includes('pages/publications/') || isIndexPage) {
         const btn = document.createElement('button');
         btn.className = 'go-top';
         btn.setAttribute('aria-label', 'Go to top');
@@ -124,10 +125,13 @@ document.addEventListener('click', function(e) {
     }
 });
 
-// Scroll animation for about section
+// Scroll animation for about section and hide navigation
 document.addEventListener('DOMContentLoaded', function() {
     const aboutSection = document.getElementById('about-section');
-    if (aboutSection) {
+    const nav = document.querySelector('nav');
+    
+    if (aboutSection && nav) {
+        // Animation observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -148,6 +152,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         observer.observe(aboutSection);
+        
+        // Hide navigation when scrolling into about section
+        function handleScroll() {
+            const aboutRect = aboutSection.getBoundingClientRect();
+            const navHeight = 64; // --nav-height value
+            
+            // Check if about section has reached the top of viewport (accounting for nav height)
+            if (aboutRect.top <= navHeight) {
+                nav.classList.add('hidden');
+            } else {
+                nav.classList.remove('hidden');
+            }
+        }
+        
+        // Initial check
+        handleScroll();
+        
+        // Add scroll listener with throttling
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(handleScroll, 10);
+        }, { passive: true });
+    }
+    
+    // Generate action button for publications
+    const aboutActionButton = document.getElementById('about-action-button');
+    if (aboutActionButton && typeof getActionButtonTemplate === 'function') {
+        aboutActionButton.innerHTML = getActionButtonTemplate({
+            type: 'primary',
+            href: 'pages/publications/publications.html',
+            text: 'go see publications',
+            ariaLabel: 'Go to publications page'
+        });
     }
 });
 
