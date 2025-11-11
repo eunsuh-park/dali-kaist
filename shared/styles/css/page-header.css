@@ -18,12 +18,18 @@
 
 /* Tablet */
 @media (max-width: 1023px) and (min-width: 768px) {
-    .page-header h2 {
-        margin : 0;
-    }
-
     .page-header {
         border-right: none;
+        position: sticky;
+        top: var(--nav-height);
+        height: var(--nav-height);
+        box-sizing: border-box;
+    }
+
+    .page-header h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 600;
     }
 }
 

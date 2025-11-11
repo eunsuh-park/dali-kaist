@@ -371,7 +371,7 @@
     }
     
     #members-content {
-        padding-top: 2rem !important;
+        padding-top: 3rem !important;
     }
 
     /* 타블렛: hover 대신 active 클래스 사용 */
@@ -382,11 +382,15 @@
     .affiliated-member.active .affiliated-hover-content {
         transform: translateY(0);
     }
+
+    body.members-page .go-top {
+        display: none !important;
+    }
 }
 
 @media (max-width: 768px) {
     #members-content {
-        padding-top: 2rem !important;
+        padding-top: 3rem !important;
     }
 
     .members-grid {
@@ -439,6 +443,10 @@
 
     .affiliated-member.active .affiliated-hover-content {
         transform: translateY(0);
+    }
+
+    body.members-page .go-top {
+        display: none !important;
     }
 }
 

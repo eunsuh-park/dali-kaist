@@ -229,7 +229,7 @@
         height: auto;
         min-height: 200px;
         flex-direction: column;
-        overflow: visible;
+        overflow: hidden;
         gap: 0rem;
     }
     
@@ -247,6 +247,16 @@
         display: none;
     }
     
+    .publication-icon {
+        height: 80%;
+        width: auto;
+    }
+    
+    .publication-icon svg {
+        height: 100%;
+        width: auto;
+    }
+
     .publication-title {
         font-size: 1.2rem;
     }

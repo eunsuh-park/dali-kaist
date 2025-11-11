@@ -35,7 +35,7 @@
 /* Mobile (≤767px) */
 @media (max-width: 767px) {
     .back-button {
-        margin-top: 0.5rem;
+        margin-top: 0rem;
     }
 }
 

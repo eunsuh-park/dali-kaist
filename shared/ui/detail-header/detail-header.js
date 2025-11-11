@@ -17,7 +17,7 @@ function getDetailHeaderTemplate(options) {
         title,
         date,
         titleId = '',
-        titleTag = ''
+        titleTag = 'h5'
     } = options;
 
     // Back button HTML
@@ -25,7 +25,7 @@ function getDetailHeaderTemplate(options) {
 
     // Title HTML with optional date
     let titleHtml = '';
-    const formattedTitle = titleTag ? `<${titleTag}>${title}</${titleTag}>` : title;
+    const formattedTitle = `<${titleTag}>${title}</${titleTag}>`;
 
     if (date) {
         // Activity style: title with date

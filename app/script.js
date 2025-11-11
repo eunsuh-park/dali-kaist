@@ -155,6 +155,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Hide navigation when scrolling into about section
         function handleScroll() {
+            if (window.innerWidth <= 767) {
+                nav.classList.remove('hidden');
+                return;
+            }
             const aboutRect = aboutSection.getBoundingClientRect();
             const navHeight = 64; // --nav-height value
             const hideOffset = 480; // 추가 여유 높이로 더 이른 시점에 숨김 시작

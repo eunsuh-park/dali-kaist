@@ -160,6 +160,7 @@ nav {
         /* 데스크탑: 좌우 동일 28px 유지 */
         margin: 0 auto;
         padding: 0 28px;
+        max-width: 1920px;
     }
 
     .hamburger {
@@ -218,11 +219,12 @@ nav {
 @media (max-width: 767px) {
     .nav-links {
         width: 260px;
-        padding: 84px 0 2rem 0;
+        padding: var(--nav-height) 0 2rem 0;
     }
 
     .nav-links a {
         padding: 1rem 1.75rem;
+        height: var(--nav-height);
         font-family: 'Tomorrow', sans-serif;
     }
 

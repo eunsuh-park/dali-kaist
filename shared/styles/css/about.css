@@ -31,7 +31,7 @@
     margin-right: auto;
 }
 
-.main-content.about-section h1 {
+.about-intro-container h3 {
     text-align: center;
     color: var(--primary-color);
     margin-bottom: 2rem;
@@ -59,8 +59,8 @@
 .main-content.about-section .about-highlights {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 6rem;
-    padding-bottom: 6rem;
+    margin-top: 4rem;
+    padding-bottom: 4rem;
 }
 
 .highlight-item {
@@ -94,14 +94,12 @@
 
 
 .highlight-image {
-    width: 30%;
-    height: 100%;
-    background-color: #808080;
+    display: none;
 }
 
 .highlight-content {
-    width:70%;
-    height: 200px;
+    width: 100%;
+    height: auto;
     padding: 1.5rem;
     border-radius: 8px;
     overflow: hidden;
@@ -116,9 +114,9 @@
     font-weight: 700;
     font-size: 1.5rem;
     color: var(--primary-color);
-    margin-bottom: 0.8rem;
-    text-align: left;
-    width: 280px;
+    margin-bottom: 0;
+    text-align: center;
+    width: auto;
 }
 
 .highlight-item p {
@@ -132,8 +130,8 @@
 }
 
 .about-research-container {
-    margin: 6rem 0 0;
-    padding-bottom: 6rem;
+    margin: 4rem 0 0;
+    padding-bottom: 4rem;
 }
 
 .about-research-highlight-item {
@@ -147,22 +145,19 @@
 
 
 .about-research-highlight-content {
-    width: auto;
-    height: 200px;
+    width: 100%;
+    height: auto;
     border-radius: 8px;
     overflow: hidden;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
     gap: 1rem;
 }
 
 .about-research-highlight-content h3 {
-    margin: 0 !important;
-    text-align: left;
-    width: 100%;
-    max-width: none;
-    white-space: nowrap;
+    text-align: center;
 }
 
 .about-research-highlight-content h5 {
@@ -219,10 +214,55 @@
     }
     
     .about-intro {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        line-height: 1.5;
     }
     
     .about-mission {
+        font-size: 1rem;
+    }
+    .about-intro-container h3 {
+        margin-top: 0 !important;
+    }
+    .about-research-highlight-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        gap: 0;
+    }
+
+    .about-research-highlight-item p {
+        width: 100%;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .about-research-container {
+        margin: 3rem 0 0;
+        padding-bottom: 3rem;
+    }
+
+    .main-content.about-section .about-highlights {
+        margin-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    .about-research-highlight-image {
+        display: none;
+    }
+
+    .highlight-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+
+    .highlight-content p {
+        width: 100%;
         font-size: 1rem;
     }
 }

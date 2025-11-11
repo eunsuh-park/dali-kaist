@@ -10,14 +10,22 @@
 
 @media (max-width: 1024px) and (min-width: 769px) {
     #publications-content {
-        padding-top: 2rem !important;
+        padding-top: 3rem !important;
+    }
+
+    body.publications-page .go-top {
+        display: none !important;
     }
 }
 
 
 @media (max-width: 768px) {
     #publications-content {
-        padding-top: 2rem !important;
+        padding-top: 3rem !important;
+    }
+
+    body.publications-page .go-top {
+        display: none !important;
     }
 }
 

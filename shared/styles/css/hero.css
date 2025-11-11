@@ -101,7 +101,9 @@
     }
 
     .hero .subtitle {
-        font-size: 1.2rem;
+        font-size: 1rem;
+        line-height: 1.25;
+        font-weight: 300;
     }
 
     .section {
