@@ -5,6 +5,11 @@
     scroll-margin-top: calc(var(--nav-height) + 12px);
 }
 
+.member-group > h5 {
+    margin: 1rem 0;
+    color: var(--text-color-light);
+}
+
 .member {
     background-color: white;
     padding: 1.5rem;
@@ -48,6 +53,10 @@
 
 #professor .member {
     background-color: var(--hover-color);
+}
+
+#professor .member .chips-container .chip {
+    background-color: white;
 }
 
 
@@ -139,18 +148,32 @@
     transform: translateY(100%);
     transition: transform 0.3s ease;
     border-radius: 0 0 8px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
 }
 
 .affiliated-member:hover .affiliated-hover-content {
     transform: translateY(0);
 }
 
-.affiliated-bio {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 1rem;
+.affiliated-email {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 0;
     color: white;
-    font-weight: 400;
+    font-weight: 500;
+}
+
+.affiliated-email a {
+    color: inherit;
+    text-decoration: none;
+    font-family: 'Tomorrow', sans-serif;
+}
+
+.affiliated-email a:hover {
+    text-decoration: underline;
 }
 
 .affiliated-actions {
@@ -162,15 +185,20 @@
 
 .affiliated-profile-btn {
     flex: 1;
-    padding: 0.6rem 1rem;
+    padding: 0 1.25rem;
     background-color: white;
     color: var(--primary-color);
     text-decoration: none;
     border-radius: 4px;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 600;
     text-align: center;
     transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    min-width: 140px;
 }
 
 .affiliated-profile-btn:hover {
@@ -271,9 +299,10 @@
     margin-bottom: 0;
 }
 
-.member-info h4 {
+.member-info h5 {
     margin-top: 0;
     overflow: hidden;
+    color: var(--text-color-dark);
 }
 
 .email-link {
@@ -310,6 +339,24 @@
 
 .alumni-item:hover {
     background-color: var(--hover-color);
+}
+
+.alumni-item-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.alumni-name {
+    font-weight: 500;
+}
+
+.alumni-current {
+    color: var(--text-color);
+    font-size: 0.95rem;
+    text-align: right;
 }
 
 /* Responsive Design for Members */
@@ -430,12 +477,18 @@
     align-items: center;
     justify-content: center;
     margin-top: 1rem;
+    flex-wrap: wrap;
 }
 
 .member-detail-actions .affiliated-profile-btn {
     flex: 1;
     background-color: var(--primary-color);
     color: white;
+    height: 44px;
+    min-width: 160px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .member-detail-actions .affiliated-profile-btn:hover {
@@ -446,6 +499,19 @@
 .member-detail-actions .affiliated-email-btn {
     background-color: var(--primary-color);
     color: white;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.member-detail-actions .member-detail-email-text {
+    width: 100%;
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    font-weight: 500;
 }
 
 .member-detail-actions .affiliated-email-btn:hover {
@@ -467,11 +533,23 @@
 
 /* .member-detail-description common styles are handled by .detail-description in detail-content.css */
 
-.member-detail-skills h3 {
-    font-size: 1.5rem;
+.member-detail-skills {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.member-detail-skills h5 {
+    margin: 0;
     color: var(--primary-color);
-    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
     font-weight: 600;
+}
+
+.member-detail-skills .chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 /* Responsive for member detail */
@@ -500,4 +578,8 @@
         width: 100%;
         margin-top:0;
     }
+}
+
+.members-page .members-section-title:first-of-type {
+    margin-top: 3rem;
 }

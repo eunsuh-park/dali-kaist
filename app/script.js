@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const normalizedHref = href.toLowerCase().replace(/^[#\/]+/, '').replace(/\/$/, '');
             const normalizedPath = currentPath.toLowerCase().replace(/^[\/]+/, '').replace(/\/$/, '');
             
-            // Extract page name from href (e.g., "pages/research/research.html" -> "research")
+            // Extract page name from href (e.g., "pages/publications/publications.html" -> "publications")
             const hrefPage = normalizedHref.split('/').pop()?.replace('.html', '') || '';
             const pathPage = normalizedPath.split('/').pop()?.replace('.html', '') || '';
             
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Go to Top 버튼 주입 (activity, publications, index 페이지에 추가)
-    const pagesWithDetailView = ['activity/activity.html', 'activity.html', 'publications/publications.html', 'publications.html', 'index.html', 'index'];
+    const pagesWithDetailView = ['activity/activity.html', 'activity.html', 'publications/publications.html', 'publications.html', 'members/members.html', 'members.html', 'index.html', 'index'];
     const isIndexPage = (currentPage === '' || currentPage === 'index.html' || currentPage === 'index' || currentPath === '' || currentPath.endsWith('index.html') || currentPath.endsWith('/'));
     if (pagesWithDetailView.includes(currentPage) || currentPath.includes('pages/activity/') || currentPath.includes('pages/publications/') || isIndexPage) {
         const btn = document.createElement('button');
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     entry.target.classList.add('animate');
                     
                     // Animate highlight items with delay
-                    const highlightItems = entry.target.querySelectorAll('.highlight-item');
+                    const highlightItems = entry.target.querySelectorAll('.highlight-item, .about-research-highlight-item');
                     highlightItems.forEach((item, index) => {
                         setTimeout(() => {
                             item.classList.add('animate');
@@ -157,9 +157,10 @@ document.addEventListener('DOMContentLoaded', function() {
         function handleScroll() {
             const aboutRect = aboutSection.getBoundingClientRect();
             const navHeight = 64; // --nav-height value
+            const hideOffset = 480; // 추가 여유 높이로 더 이른 시점에 숨김 시작
             
-            // Check if about section has reached the top of viewport (accounting for nav height)
-            if (aboutRect.top <= navHeight) {
+            // Check if about section has reached the threshold above the viewport top
+            if (aboutRect.top <= navHeight + hideOffset) {
                 nav.classList.add('hidden');
             } else {
                 nav.classList.remove('hidden');
@@ -183,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
         aboutActionButton.innerHTML = getActionButtonTemplate({
             type: 'primary',
             href: 'pages/publications/publications.html',
-            text: 'go see publications',
+            text: 'Read More',
             ariaLabel: 'Go to publications page'
         });
     }

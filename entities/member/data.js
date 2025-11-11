@@ -2,7 +2,7 @@
 const memberDetails = {
     'jeong-nam-kim': {
         name: 'Jeong-Nam Kim, Ph.D.',
-        image: '../../shared/assets/images/members/no_profile.png',
+        image: '../../shared/assets/images/members/jeong-nam_kim_clean.jpg',
         email: 'layinformatics@kaist.ac.kr',
         profileUrl: 'https://example.com/profile/jeong-nam-kim',
         description: 'I study communicative action and informatics among lay problem solvers. I constructed the situational theory of problem solving (STOPS) and the model of cognitive arrest and epistemic inertia among lay problem solvers (vs scientists) with Jim Grunig. I work on a theory of information markets to explain the processes and problems from information trafficking among social actors such as pseudo-information, biases, failing information markets, and fading public delegation to social institutions.',

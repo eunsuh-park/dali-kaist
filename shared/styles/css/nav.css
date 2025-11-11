@@ -37,7 +37,6 @@ nav {
 .nav-logo img {
     display: block; /* remove inline-gap */
     width: 100%;    /* responsive to container */
-    max-width: 200px; /* cap at 200px */
     height: auto;   /* preserve aspect ratio */
 }
 
@@ -93,6 +92,7 @@ nav {
     color: var(--text-color);
     font-weight: 500;
     transition: color 0.3s;
+    font-family: 'Tomorrow', sans-serif;
 }
 
 .nav-links a:hover {
@@ -186,6 +186,7 @@ nav {
 
     .nav-links a {
         padding: 0.5rem 0;
+        font-family: 'Tomorrow', sans-serif;
     }
 
     .nav-overlay {
@@ -222,6 +223,7 @@ nav {
 
     .nav-links a {
         padding: 1rem 1.75rem;
+        font-family: 'Tomorrow', sans-serif;
     }
 
     .nav-logo img {

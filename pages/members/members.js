@@ -2,7 +2,7 @@
 const memberDetails = {
     'jeong-nam-kim': {
         name: 'Jeong-Nam Kim, Ph.D.',
-        image: '../../shared/assets/images/members/no_profile.png',
+        image: '../../shared/assets/images/members/jeong-nam_kim_clean.jpg',
         email: 'layinformatics@kaist.ac.kr',
         profileUrl: 'https://example.com/profile/jeong-nam-kim',
         description: 'I study communicative action and informatics among lay problem solvers. I constructed the situational theory of problem solving (STOPS) and the model of cognitive arrest and epistemic inertia among lay problem solvers (vs scientists) with Jim Grunig. I work on a theory of information markets to explain the processes and problems from information trafficking among social actors such as pseudo-information, biases, failing information markets, and fading public delegation to social institutions.',
@@ -132,6 +132,20 @@ const affiliatedMemberData = {
     }
 };
 
+const NAV_SCROLL_OFFSET = 80;
+let lastSelectedMemberElement = null;
+
+function scrollToElementAfterRender(element) {
+    if (!element) return;
+    requestAnimationFrame(() => {
+        const navHeight = 64;
+        const extraOffset = 16;
+        const rect = element.getBoundingClientRect();
+        const target = rect.top + window.pageYOffset - (navHeight + extraOffset);
+        window.scrollTo({ top: target > 0 ? target : 0, behavior: 'smooth' });
+    });
+}
+
 /**
  * Initialize detail header using detail-header component
  * @param {string} parentElementId - 상위 요소의 ID (페이지명이 포함된 요소, 예: 'member-detail', 'activity-detail')
@@ -236,6 +250,7 @@ function showMemberDetail(memberId) {
                 email: memberInfo.email,
                 ariaLabel: `Send email to ${memberInfo.email}`
             }) : ''}
+            ${memberInfo.email ? `<span class="member-detail-email-text">${memberInfo.email}</span>` : ''}
         </div>
     ` : '';
     
@@ -250,7 +265,7 @@ function showMemberDetail(memberId) {
                     <p>${memberInfo.description}</p>
                 </div>
                 <div class="member-detail-skills">
-                    <h3>Skills and Expertise</h3>
+                    <h5>Skills and Expertise</h5>
                     <div class="chips-container">
                         ${memberInfo.skills.map(skill => `<div class="chip">${skill}</div>`).join('')}
                     </div>
@@ -274,8 +289,7 @@ function showMembersList() {
     // Remove class from body to show sidebar on tablet/mobile
     document.body.classList.remove('detail-view-open');
     
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToElementAfterRender(lastSelectedMemberElement);
 }
 
 // Initialize member card click handlers
@@ -291,6 +305,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const memberId = this.getAttribute('data-member-id');
             if (memberId && memberDetails[memberId]) {
+                lastSelectedMemberElement = this;
                 showMemberDetail(memberId);
             }
         });
@@ -302,6 +317,7 @@ document.addEventListener('DOMContentLoaded', function() {
         item.addEventListener('click', function(e) {
             const memberId = this.getAttribute('data-member-id');
             if (memberId && memberDetails[memberId]) {
+                lastSelectedMemberElement = this;
                 showMemberDetail(memberId);
             }
         });

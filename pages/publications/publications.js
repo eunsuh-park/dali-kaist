@@ -1,6 +1,24 @@
 // Publications data loaded from JavaScript file
 // publicationsData is defined in publications-data.js
 
+const publicationDetailsMap = new Map();
+let publicationsListElement;
+let publicationDetailElement;
+let publicationDetailHeaderElement;
+let publicationDetailInfoElement;
+let lastSelectedPublicationElement = null;
+
+function scrollToPublicationCard(element) {
+    if (!element) return;
+    requestAnimationFrame(() => {
+        const navHeight = 64;
+        const extraOffset = 16;
+        const rect = element.getBoundingClientRect();
+        const target = rect.top + window.pageYOffset - (navHeight + extraOffset);
+        window.scrollTo({ top: target > 0 ? target : 0, behavior: 'smooth' });
+    });
+}
+
 // Load publications from JavaScript data file
 function loadPublications() {
     return new Promise((resolve, reject) => {
@@ -77,6 +95,130 @@ function groupByYear(publications) {
     return grouped;
 }
 
+function renderPublicationDetailHeader(options) {
+    if (!publicationDetailHeaderElement || typeof getDetailHeaderTemplate !== 'function') {
+        return;
+    }
+
+    const {
+        title,
+        date,
+        backButtonId,
+        backButtonAriaLabel,
+        onBackClick,
+        titleId = '',
+        titleTag = 'h2'
+    } = options;
+
+    publicationDetailHeaderElement.innerHTML = getDetailHeaderTemplate({
+        backButtonId,
+        backButtonAriaLabel,
+        title,
+        date,
+        titleId,
+        titleTag
+    });
+
+    const backButton = document.getElementById(backButtonId);
+    if (backButton && typeof onBackClick === 'function') {
+        backButton.addEventListener('click', onBackClick, { once: true });
+    }
+}
+
+function showPublicationDetail(publicationId) {
+    const publication = publicationDetailsMap.get(publicationId);
+    if (!publication || !publicationsListElement || !publicationDetailElement || !publicationDetailInfoElement) {
+        return;
+    }
+
+    publicationsListElement.style.display = 'none';
+    publicationDetailElement.style.display = 'block';
+    document.body.classList.add('detail-view-open');
+
+    renderPublicationDetailHeader({
+        title: publication.Title || 'Publication Detail',
+        date: publication.Date || publication.Date2 || publication.year || '',
+        backButtonId: 'back-to-publications',
+        backButtonAriaLabel: 'Back to publications list',
+        onBackClick: showPublicationsList,
+        titleId: 'publication-detail-title',
+        titleTag: 'h5'
+    });
+
+    const authors = publication.Authors || publication.authors || '';
+    const venue = publication.ETC || '';
+    const recommendation = publication.Recommentation || publication.Recommendation || '';
+    const summary = publication.Summary || '';
+
+    const metaParts = [];
+    if (authors) metaParts.push(`<span class="publication-detail-authors">${authors}</span>`);
+    if (venue) metaParts.push(`<span class="publication-detail-venue">${venue}</span>`);
+
+    const researchGateUrl = publication.URL || publication.URL2 || publication.URL3 || '';
+    const scholarUrl = `https://scholar.google.com/scholar_lookup?title=${encodeURIComponent(publication.Title || '')}${authors ? `&author=${encodeURIComponent(authors)}` : ''}`;
+
+    const actions = [];
+    if (typeof getActionButtonTemplate === 'function') {
+        actions.push(getActionButtonTemplate({
+            type: 'primary',
+            href: scholarUrl,
+            text: 'Google Scholar',
+            target: '_blank',
+            rel: 'noopener noreferrer',
+            ariaLabel: 'Search this publication on Google Scholar'
+        }));
+    }
+
+    const abstractText = summary.trim() !== '' ? summary : 'Abstract is not available.';
+
+    publicationDetailInfoElement.innerHTML = `
+        <div class="publication-detail-image">
+            <div class="publication-placeholder-image"></div>
+        </div>
+        ${metaParts.length ? `<div class="publication-detail-meta">${metaParts.join('')}</div>` : ''}
+        <div class="publication-detail-abstract">
+            <h5>Abstract</h5>
+            <p>${abstractText}</p>
+        </div>
+        <div class="publication-detail-actions">
+            ${actions.join('')}
+        </div>
+    `;
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showPublicationsList() {
+    if (!publicationsListElement || !publicationDetailElement) {
+        return;
+    }
+
+    publicationDetailElement.style.display = 'none';
+    publicationsListElement.style.display = 'block';
+    document.body.classList.remove('detail-view-open');
+    scrollToPublicationCard(lastSelectedPublicationElement);
+}
+
+function initializePublicationCardClicks() {
+    const cards = document.querySelectorAll('.publication-card[data-publication-id]');
+    cards.forEach(card => {
+        if (card.dataset.detailBound === 'true') {
+            return;
+        }
+        card.dataset.detailBound = 'true';
+        card.addEventListener('click', function(event) {
+            if (event.target.closest('a')) {
+                return;
+            }
+            const publicationId = this.getAttribute('data-publication-id');
+            if (publicationId) {
+                lastSelectedPublicationElement = this;
+                showPublicationDetail(publicationId);
+            }
+        });
+    });
+}
+
 // Generate sidebar menu with year counts
 function generateSidebarMenu(publicationsByYear) {
     const sidebarMenu = document.querySelector('.sidebar-menu');
@@ -88,7 +230,6 @@ function generateSidebarMenu(publicationsByYear) {
     const years = Object.keys(publicationsByYear).sort((a, b) => b - a);
     
     years.forEach((year, index) => {
-        const count = publicationsByYear[year].length;
         const li = document.createElement('li');
         const a = document.createElement('a');
         a.href = `#${year}`;
@@ -96,12 +237,6 @@ function generateSidebarMenu(publicationsByYear) {
         if (index === 0) {
             a.classList.add('active');
         }
-        
-        // Add count
-        const countSpan = document.createElement('span');
-        countSpan.className = 'year-count';
-        countSpan.textContent = ` (${count})`;
-        a.appendChild(countSpan);
         
         li.appendChild(a);
         sidebarMenu.appendChild(li);
@@ -114,6 +249,7 @@ function generatePublicationCards(publicationsByYear) {
     if (!mainContent) return;
     
     mainContent.innerHTML = '';
+    publicationDetailsMap.clear();
     
     // Get years sorted in descending order
     const years = Object.keys(publicationsByYear).sort((a, b) => b - a);
@@ -123,27 +259,35 @@ function generatePublicationCards(publicationsByYear) {
         yearSection.className = 'publication-year';
         yearSection.id = year;
         
-        const h3 = document.createElement('h3');
-        h3.textContent = year;
-        yearSection.appendChild(h3);
+        const h5 = document.createElement('h5');
+        h5.className = 'publication-year-title';
+        h5.textContent = year;
+        yearSection.appendChild(h5);
         
         const cardsContainer = document.createElement('div');
         cardsContainer.className = 'publication-cards';
         
-        publicationsByYear[year].forEach(pub => {
-            const card = createPublicationCard(pub);
+        publicationsByYear[year].forEach((pub, index) => {
+            const publicationId = `${year}-${index}`;
+            publicationDetailsMap.set(publicationId, { ...pub, year });
+            const card = createPublicationCard(pub, publicationId);
             cardsContainer.appendChild(card);
         });
         
         yearSection.appendChild(cardsContainer);
         mainContent.appendChild(yearSection);
     });
+
+    initializePublicationCardClicks();
 }
 
 // Create a publication card
-function createPublicationCard(pub) {
+function createPublicationCard(pub, publicationId) {
     const card = document.createElement('div');
     card.className = 'publication-card';
+    if (publicationId) {
+        card.setAttribute('data-publication-id', publicationId);
+    }
     
     const imageDiv = document.createElement('div');
     imageDiv.className = 'publication-image';
@@ -160,10 +304,10 @@ function createPublicationCard(pub) {
     const contentDiv = document.createElement('div');
     contentDiv.className = 'publication-content';
     
-    const titleDiv = document.createElement('div');
-    titleDiv.className = 'publication-title';
-    titleDiv.textContent = pub.Title || '';
-    contentDiv.appendChild(titleDiv);
+    const titleHeading = document.createElement('h5');
+    titleHeading.className = 'publication-title';
+    titleHeading.textContent = pub.Title || '';
+    contentDiv.appendChild(titleHeading);
     
     // Add Authors if available
     if (pub.Authors || pub.authors) {
@@ -189,26 +333,6 @@ function createPublicationCard(pub) {
         contentDiv.appendChild(venueDiv);
     }
     
-    // Add action button directly in card content
-    const pdfUrl = pub.URL || pub.URL2 || pub.URL3 || '';
-    if (pdfUrl) {
-        const actionsDiv = document.createElement('div');
-        actionsDiv.className = 'publication-actions';
-        
-        // Use action-button component with primary style
-        const buttonHtml = getActionButtonTemplate({
-            type: 'primary',
-            href: pdfUrl,
-            text: 'go to ResearchGate',
-            target: '_blank',
-            rel: 'noopener noreferrer',
-            ariaLabel: 'Go to ResearchGate'
-        });
-        
-        actionsDiv.innerHTML = buttonHtml;
-        contentDiv.appendChild(actionsDiv);
-    }
-    
     card.appendChild(contentDiv);
     
     return card;
@@ -216,6 +340,18 @@ function createPublicationCard(pub) {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
+    publicationsListElement = document.getElementById('publications-content');
+    publicationDetailElement = document.getElementById('publication-detail');
+    publicationDetailHeaderElement = document.getElementById('publication-detail-header');
+    publicationDetailInfoElement = document.getElementById('publication-detail-info');
+
+    if (publicationDetailElement) {
+        publicationDetailElement.style.display = 'none';
+    }
+    if (publicationDetailInfoElement) {
+        publicationDetailInfoElement.innerHTML = '';
+    }
+
     loadPublications().then(() => {
         // Re-initialize scroll-based sidebar activation after publications are loaded
         initializeScrollSidebar();

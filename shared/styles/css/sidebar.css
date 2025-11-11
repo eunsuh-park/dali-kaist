@@ -34,6 +34,7 @@
     border-radius: 4px;
     transition: all 0.3s;
     font-weight: 400;
+    font-family: 'Tomorrow', sans-serif;
 }
 
 .sidebar-menu a:hover {
@@ -115,6 +116,7 @@
         border-radius: 50%;
         cursor: pointer;
         transition: all 0.3s ease;
+        font-family: 'Tomorrow', sans-serif;
     }
 
     .publications-page .sidebar-menu a:hover {
@@ -174,6 +176,7 @@
         cursor: pointer;
         transition: all 0.3s ease;
         position: relative;
+        font-family: 'Tomorrow', sans-serif;
     }
 
     /* Members 페이지 메뉴 텍스트를 타블렛/모바일에서 짧게 표시 */

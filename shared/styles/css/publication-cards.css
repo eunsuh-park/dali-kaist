@@ -20,7 +20,7 @@
 }
 
 .publication-actions {
-    margin-top: 1rem;
+    display: none;
 }
 
 .publication-image {
@@ -79,16 +79,15 @@
 }
 
 .publication-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
+    border-color: var(--primary-color);
 }
 
 .publication-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--primary-color);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--text-color-dark);
     line-height: 1.4;
-    margin-bottom: 0.5rem;
+    margin: 0 0 0.5rem 0;
 }
 
 .publication-authors {
@@ -179,8 +178,7 @@
 }
 
 .details-link:hover {
-    background-color: var(--primary-color);
-    transform: translateY(-1px);
+    background-color: var(--primary-color-dark);
 }
 
 /* Responsive Design for Publication Cards */

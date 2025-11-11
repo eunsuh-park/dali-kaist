@@ -3,17 +3,15 @@
     display: flex;
     align-items: flex-start;
     gap: 1rem;
+    margin-top: 0.5rem;
     margin-bottom: 2rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border-color);
 }
 
 .detail-header-title {
-    font-size: 2rem;
-    color: var(--primary-color);
+    display: block;
     margin: 0;
-    font-weight: 700;
-    flex: 1;
 }
 
 /* Activity style: title with date */
@@ -26,18 +24,33 @@
 }
 
 .detail-header-title-text {
-    flex: 0 0 auto;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--text-color-dark);
+    display: block;
+    overflow: visible;
 }
 
-.detail-header-title-date {
-    font-size: 0.9rem;
-    font-weight: 400;
-    color: var(--text-color-light);
+.detail-header-title-text * {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    white-space: normal;
+    line-height: 1.4;
 }
 
 /* Hide date when not provided */
 .detail-header-title-date:empty {
     display: none;
+}
+
+.detail-header-title-date {
+    display: block;
+    font-size: 1rem;
+    line-height: 1.25;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    color: var(--text-color-light);
 }
 
 @media (max-width: 1024px) and (min-width: 769px) {

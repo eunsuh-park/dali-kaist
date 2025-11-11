@@ -153,6 +153,18 @@ function getNextActivityId(currentId) {
 
 // Store current activity ID
 let currentActivityId = null;
+let lastSelectedActivityElement = null;
+
+function scrollToActivityElement(element) {
+    if (!element) return;
+    requestAnimationFrame(() => {
+        const navHeight = 64;
+        const extraOffset = 16;
+        const rect = element.getBoundingClientRect();
+        const target = rect.top + window.pageYOffset - (navHeight + extraOffset);
+        window.scrollTo({ top: target > 0 ? target : 0, behavior: 'smooth' });
+    });
+}
 
 /**
  * Initialize detail header using detail-header component
@@ -321,7 +333,7 @@ function showActivitiesList() {
     document.body.classList.remove('detail-view-open');
     
     // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToActivityElement(lastSelectedActivityElement);
 }
 
 // Initialize activity item click handlers
@@ -332,6 +344,7 @@ document.addEventListener('DOMContentLoaded', function() {
         item.addEventListener('click', function(e) {
             const activityId = this.getAttribute('data-activity-id');
             if (activityId && activityDetails[activityId]) {
+                lastSelectedActivityElement = this;
                 showActivityDetail(activityId);
             }
         });

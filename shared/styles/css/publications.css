@@ -8,14 +8,6 @@
     scroll-margin-top: calc(var(--nav-height) + 12px);
 }
 
-/* Publication sidebar year count */
-.year-count {
-    font-size: 0.75rem;
-    font-weight: 400;
-    color: var(--text-color-light);
-    margin-left: 0.25rem;
-}
-
 @media (max-width: 1024px) and (min-width: 769px) {
     #publications-content {
         padding-top: 2rem !important;
@@ -27,4 +19,96 @@
     #publications-content {
         padding-top: 2rem !important;
     }
+}
+
+
+.publication-year-title {
+    margin: 1rem 0;
+    color: var(--text-color-light);
+    font-size: 1.35rem;
+    font-weight: 500;
+}
+
+.publications-page .publication-year-title:first-of-type {
+    margin-top: 3rem;
+}
+
+.publication-detail-image {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 2rem auto;
+}
+
+.publication-placeholder-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background-color: #d3d3d3;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.publication-detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.publication-detail-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: var(--text-color);
+}
+
+.publication-detail-meta span {
+    display: block;
+}
+
+.publication-detail-meta .chip-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.publication-detail-meta .chip-link:hover {
+    color: var(--primary-color);
+}
+
+.publication-detail-abstract {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.publication-detail-abstract h5 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.publication-detail-abstract p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.publication-detail-summary p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.publication-detail-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.publication-detail-actions .action-button {
+    min-width: 12rem;
 }

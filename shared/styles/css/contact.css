@@ -99,10 +99,6 @@
     height: 100%;
 }
 
-.contact-card-primary {
-    background-color: var(--primary-color);
-}
-
 .contact-card-title {
     line-height: 1.2;
     font-size: 1.5rem;
@@ -110,10 +106,6 @@
     font-weight: 600;
     margin: 0 !important;
     padding: 0 !important;
-}
-.contact-card-primary .contact-card-title,
-.contact-card-primary .contact-card-text {
-    color: white;
 }
 
 .contact-card-text {
@@ -128,16 +120,6 @@
 
 .contact-card-action {
     margin-top: 1rem;
-}
-
-.contact-card-primary .contact-card-action .action-button-primary {
-    background-color: white;
-    color: var(--primary-color);
-}
-
-.contact-card-primary .contact-card-action .action-button-primary:hover {
-    background-color: rgba(255, 255, 255, 0.9);
-    color: var(--primary-color);
 }
 
 /* Responsive Design for Contact Cards */

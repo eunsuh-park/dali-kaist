@@ -23,7 +23,7 @@ research/
 
 현재 상태:
 ----------
-- 연구 데이터는 현재 pages/research/research.html에 하드코딩되어 있음
+- 이전에는 pages/research/research.html에 연구 데이터가 하드코딩되어 있었으나, 해당 페이지는 제거됨
 - 향후 데이터를 entities/research/data.js로 이동 예정
 - 연구 카드 컴포넌트를 분리하여 재사용성 향상 예정
 

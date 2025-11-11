@@ -16,7 +16,8 @@ function getDetailHeaderTemplate(options) {
         backButtonAriaLabel,
         title,
         date,
-        titleId = ''
+        titleId = '',
+        titleTag = ''
     } = options;
 
     // Back button HTML
@@ -24,11 +25,13 @@ function getDetailHeaderTemplate(options) {
 
     // Title HTML with optional date
     let titleHtml = '';
+    const formattedTitle = titleTag ? `<${titleTag}>${title}</${titleTag}>` : title;
+
     if (date) {
         // Activity style: title with date
         titleHtml = `
             <h2 class="detail-header-title detail-header-title-with-date" ${titleId ? `id="${titleId}"` : ''}>
-                <span class="detail-header-title-text">${title}</span>
+                <span class="detail-header-title-text">${formattedTitle}</span>
                 <span class="detail-header-title-date">${date}</span>
             </h2>
         `;
@@ -36,7 +39,7 @@ function getDetailHeaderTemplate(options) {
         // Default style: title only (date span is included but empty for CSS hiding)
         titleHtml = `
             <h2 class="detail-header-title" ${titleId ? `id="${titleId}"` : ''}>
-                <span class="detail-header-title-text">${title}</span>
+                <span class="detail-header-title-text">${formattedTitle}</span>
                 <span class="detail-header-title-date"></span>
             </h2>
         `;

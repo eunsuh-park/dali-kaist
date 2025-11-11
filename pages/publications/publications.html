@@ -10,8 +10,11 @@
     <link rel="stylesheet" href="../../shared/styles/css/footer.css">
     <link rel="stylesheet" href="../../shared/styles/css/sidebar.css">
     <link rel="stylesheet" href="../../shared/styles/css/page-header.css">
-    <!-- <link rel="stylesheet" href="../../shared/styles/css/go-top.css"> -->
+    <link rel="stylesheet" href="../../shared/styles/css/go-top.css">
     <link rel="stylesheet" href="../../shared/styles/css/main-content.css">
+    <link rel="stylesheet" href="../../shared/styles/css/detail-content.css">
+    <link rel="stylesheet" href="../../shared/styles/css/back-button.css">
+    <link rel="stylesheet" href="../../shared/styles/css/detail-header.css">
     <!-- Page-specific Styles for publications.html -->
     <link rel="stylesheet" href="../../shared/styles/css/publication-cards.css">
     <link rel="stylesheet" href="../../shared/styles/css/publications.css">
@@ -33,6 +36,10 @@
                 <div class="main-content" id="publications-content">
                     <!-- Publications will be dynamically loaded from datatable.csv -->
                 </div>
+                <div class="main-content detail-view" id="publication-detail" style="display: none;">
+                    <div id="publication-detail-header"></div>
+                    <div class="detail-content publication-detail-content" id="publication-detail-info"></div>
+                </div>
             </div>
         </section>
     </main>
@@ -42,6 +49,8 @@
     <script src="../../shared/utils/path-resolver.js"></script>
     <script src="../../shared/ui/nav/nav.js"></script>
     <script src="../../shared/ui/footer/footer.js"></script>
+    <script src="../../shared/ui/back-button/back-button.js"></script>
+    <script src="../../shared/ui/detail-header/detail-header.js"></script>
     <script src="../../shared/ui/action-button/action-button.js"></script>
     <script src="../../app/script.js"></script>
     <script src="publications-data.js"></script>

@@ -27,7 +27,6 @@ function getNavTemplate() {
             <span></span>
         </button>
         <ul class="nav-links">
-            <li><a href="${basePath}pages/research/research.html">Research</a></li>
             <li><a href="${basePath}pages/publications/publications.html">Publications</a></li>
             <li><a href="${basePath}pages/members/members.html">Members</a></li>
             <li><a href="${basePath}pages/activity/activity.html">Activity</a></li>

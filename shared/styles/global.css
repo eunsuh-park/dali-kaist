@@ -1,18 +1,33 @@
 /* ============================================
-   Global Styles
-   ============================================
-   전역 스타일: CSS 변수, 기본 리셋, 기본 타이포그래피, 공통 레이아웃
+Global Styles
+============================================
+전역 스타일: CSS 변수, 기본 리셋, 기본 타이포그래피, 공통 레이아웃
    ============================================ */
 
 /* Font Import */
 @import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@300;400;600&display=swap');
+/* <weight>: Use a value from 100 to 900 */
+/* <uniquifier>: Use a unique and descriptive class name */
+
+.roboto-custom {
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
 
 /* CSS Variables */
 :root {
-    --primary-color: #003366;
+    --primary-color: #42834e;
+    --primary-color-dark: #2e572e;
+    --primary-color-light: #adcbad;
+/*--------------------------------*/
     --secondary-color: #656e76;
+/*--------------------------------*/
     --text-color: #333;
+    --text-color-dark: #1a1a1a;
     --text-color-light: #7f858a;
+/*--------------------------------*/
     --light-bg: #f8f9fa;
     --border-color: #e0e0e0;
     --hover-color: #5e80a30d;
@@ -49,7 +64,7 @@ html {
 }
 
 body {
-    font-family: 'Tomorrow', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Tomorrow', 'Helvetica Neue', Arial, sans-serif;
     font-weight: 600; /* Semibold as default */
     line-height: 1.6;
     color: var(--text-color);
@@ -112,9 +127,17 @@ main {
 p {
     font-size: 1rem;
     line-height: 1.25;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    font-weight: 400;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
     font-style: normal;
+}
+
+h1 {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-weight: 700;
+    font-family: 'Tomorrow', sans-serif;
 }
 
 h2 {
@@ -122,6 +145,7 @@ h2 {
     color: var(--primary-color);
     margin-bottom: 2rem;
     font-weight: 700;
+    font-family: 'Tomorrow', sans-serif;
 }
 
 h3 {
@@ -130,6 +154,7 @@ h3 {
     margin-bottom: 1rem;
     margin-top: 2rem;
     font-weight: 600;
+    font-family: 'Tomorrow', sans-serif;
 }
 
 h4 {
@@ -137,5 +162,15 @@ h4 {
     color: var(--text-color);
     margin-bottom: 0.5rem;
     font-weight: 600;
+    font-family: 'Tomorrow', sans-serif;
+}
+
+h5 {
+    font-size: 1.15rem;
+    line-height: 1.5;
+    color: var(--text-color-dark);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
 }
 

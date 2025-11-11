@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="shared/styles/css/hero.css">
     <link rel="stylesheet" href="shared/styles/css/about.css">
     <link rel="stylesheet" href="shared/styles/css/action-button.css">
+    <!-- Page-specific Styles for hero research focus -->
+    <link rel="stylesheet" href="shared/styles/css/hero-research-focus.css">
+    <link rel="stylesheet" href="shared/styles/css/chips.css">
 </head>
 <body>
     <div id="nav-placeholder"></div>
@@ -29,7 +32,7 @@
                 <div class="hero-content">
                     <div class="hero-text">
                         <h1>Debiasing and<br>Lay Informatics<br>Laboratory</h1>
-                        <p class="subtitle">Moon Soul Graduate School of Future Strategy,<br>KAIST</p>
+                        <p class="subtitle">KAIST</p>
                     </div>
                     <div class="hero-image">
                         <!-- 이미지가 들어갈 영역 -->
@@ -38,18 +41,71 @@
             </div>
         </section>
         <div class="main-content about-section" id="about-section">
-            <h1>About the Lab</h1>
-            <p class="about-intro">
-            We conduct research on publics and their communicative behaviors<br>to promote a healthy information ecosystem for a sustainable future.
-            <br>We tackle pressing information challenges of our time,<br>including pseudo-information, public biases, and failing information markets.</p>
-            <div class="about-highlights">
-                <div class="highlight-item">
-                    <div class="highlight-content">
-                        <h4>Research Focus</h4>
+            <div class="about-intro-container">
+                <h1>About the Lab</h1>
+                <p class="about-intro">
+                We conduct research on publics and their communicative behaviors<br>to promote a healthy information ecosystem for a sustainable future.
+                <br>We tackle pressing information challenges of our time,<br>including pseudo-information, public biases, and failing information markets.</p>
+            </div>
+            <div class="about-research-container">
+                <div class="about-research-highlight-item">
+                    <div class="about-research-highlight-content">
+                        <h3>Research Focus</h3>
                         <p>Understanding how and why publics engage in communicative actions, examining proactiveness and reactiveness in information acquisition, selection, and transmission.</p>
-                    </div>
-                    <div class="highlight-image"></div>
+                    </div>                
                 </div>
+                <div class="research-cards-container">
+
+
+                    <div class="research-card">
+                        <h5 class="research-card-title">Public & Strategic<br>Communication</h5>
+                        <div class="research-card-topics chips-container">
+                            <div class="chip">Public Relations</div>
+                            <div class="chip">Government Communication</div>
+                            <div class="chip">Public Diplomacy</div>
+                        </div>
+                    </div>
+
+                    <div class="research-card">
+                        <h5 class="research-card-title">Crisis, Risk & Health<br>Communication</h5>
+                        <div class="research-card-topics chips-container">
+                            <div class="chip">Crisis Communication</div>
+                            <div class="chip">Risk Communication</div>
+                            <div class="chip">Health Communication</div>
+                        </div>
+                    </div>
+
+                    <div class="research-card">
+                        <h5 class="research-card-title">Organizational<br>Communication</h5>
+                        <div class="research-card-topics chips-container">
+                            <div class="chip">Employee Communication</div>
+                        </div>
+                    </div>
+
+                    <div class="research-card">
+                        <h5 class="research-card-title">Science & Technology<br>Communication</h5>
+                        <div class="research-card-topics chips-container">
+                            <div class="chip">Science Communication</div>
+                        </div>
+                    </div>
+
+                    <div class="research-card">
+                        <h5 class="research-card-title">Digital Media &<br>Information Environment</h5>
+                        <div class="research-card-topics chips-container">
+                            <div class="chip">Digital information failure<br>(fake news, fake comments, etc)</div>
+                            <div class="chip">AI-enabled moderation of<br>commenting systems</div>
+                        </div>
+                    </div>
+                    <div class="research-card" id="Research-card-2026">
+                        <h5 class="research-card-title">2026</h5>
+                        <div class="research-card-topics chips-container">
+                            <p class="coming-soon-text">Coming Soon</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-action" id="about-action-button"></div>
+            </div>
+            <div class="about-highlights">
                 <div class="highlight-item">
                     <div class="highlight-content">
                         <h4>Mission</h4>
@@ -64,8 +120,7 @@
                     </div>
                     <div class="highlight-image"></div>
                 </div>
-            </div>
-            <div class="about-action" id="about-action-button"></div>
+            </div>                     
         </div>
     </main>
 

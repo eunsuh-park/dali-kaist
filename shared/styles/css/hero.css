@@ -23,7 +23,7 @@
 .hero {
     text-align: center;
     padding: 4rem 2rem;
-    background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.3) 100%), url('../../assets/images/main_bg.jpg') center center / cover no-repeat;
+    background: url('../../assets/images/main_bg.jpg') center center / cover no-repeat;
     color: white;
     width: 100vw;
     min-height: 100vh;
@@ -53,6 +53,7 @@
     font-weight: 600;
     text-align: left;
     margin-bottom: 1.5rem;
+    color: white;
 }
 
 .hero .subtitle {

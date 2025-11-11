@@ -46,7 +46,7 @@
    - `basePath = '../'`
 4. nav.js에서 생성된 링크:
    - 홈: `../app/index.html` ✅
-   - Research: `../pages/research/research.html` ✅
+   - Publications: `../pages/publications/publications.html` ✅
    - 로고: `../shared/assets/images/svg/logo.svg` ✅
 
 ### 시나리오 2: pages/members/members.html에서 nav.js 로드
@@ -57,7 +57,7 @@
    - `basePath = '../../'`
 4. nav.js에서 생성된 링크:
    - 홈: `../../app/index.html` ✅
-   - Research: `../../pages/research/research.html` ✅
+   - Publications: `../../pages/publications/publications.html` ✅
    - 로고: `../../shared/assets/images/svg/logo.svg` ✅
 
 ## 주의사항

@@ -14,9 +14,6 @@ pages/
 │   ├── publications.html
 │   ├── publications.js
 │   └── publications-data.js (→ entities/publication/data.js로 이동 예정)
-├── research/            # 연구 페이지
-│   ├── research.html
-│   └── research.js
 ├── activity/            # 활동 페이지
 │   ├── activity.html
 │   └── activity.js
@@ -35,15 +32,11 @@ pages/
    - publications.js: 출판물 로딩 및 표시 로직
    - publications-data.js: 출판물 데이터 (→ entities로 이동 예정)
 
-3. research/
-   - 연구 프로젝트 카드 표시
-   - research.js: 연구 카드 표시 로직
-
-4. activity/
+3. activity/
    - 활동/뉴스 갤러리 표시
    - activity.js: 활동 카드 표시 로직
 
-5. contact/
+4. contact/
    - 연락처 정보 표시
    - 현재 빈 페이지 (향후 구현 예정)
 
