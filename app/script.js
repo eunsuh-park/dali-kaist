@@ -53,6 +53,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Ensure quick scroll menus are appended to body for fixed positioning
+    const quickMenus = document.querySelectorAll('.quick-scroll-menu');
+    quickMenus.forEach(menu => {
+        if (menu && menu.dataset.fixedPosition !== 'true') {
+            menu.dataset.fixedPosition = 'true';
+            document.body.appendChild(menu);
+            if (!menu.children.length) {
+                menu.classList.add('quick-scroll-menu--hidden');
+            }
+        }
+    });
+
     // Go to Top 버튼 주입 (activity, publications, index 페이지에 추가)
     const pagesWithDetailView = ['activity/activity.html', 'activity.html', 'publications/publications.html', 'publications.html', 'members/members.html', 'members.html', 'index.html', 'index'];
     const isIndexPage = (currentPage === '' || currentPage === 'index.html' || currentPage === 'index' || currentPath === '' || currentPath.endsWith('index.html') || currentPath.endsWith('/'));
@@ -129,6 +141,42 @@ document.addEventListener('click', function(e) {
 document.addEventListener('DOMContentLoaded', function() {
     const aboutSection = document.getElementById('about-section');
     const nav = document.querySelector('nav');
+
+    const scrollFadeElements = document.querySelectorAll('.scroll-fade');
+    if (scrollFadeElements.length > 0) {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const revealAll = () => scrollFadeElements.forEach(el => el.classList.add('is-visible'));
+
+        if (prefersReducedMotion.matches) {
+            revealAll();
+        } else {
+            const fadeObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.2,
+                rootMargin: '0px 0px -10% 0px'
+            });
+
+            scrollFadeElements.forEach(el => fadeObserver.observe(el));
+        }
+
+        const handleMotionPreferenceChange = (event) => {
+            if (event.matches) {
+                revealAll();
+            }
+        };
+
+        if (typeof prefersReducedMotion.addEventListener === 'function') {
+            prefersReducedMotion.addEventListener('change', handleMotionPreferenceChange);
+        } else if (typeof prefersReducedMotion.addListener === 'function') {
+            prefersReducedMotion.addListener(handleMotionPreferenceChange);
+        }
+    }
     
     if (aboutSection && nav) {
         // Animation observer
@@ -183,28 +231,36 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Generate action button for publications
-    const aboutActionButton = document.getElementById('about-action-button');
-    if (aboutActionButton && typeof getActionButtonTemplate === 'function') {
-        aboutActionButton.innerHTML = getActionButtonTemplate({
-            type: 'primary',
-            href: 'pages/publications/publications.html',
-            text: 'Read More',
-            ariaLabel: 'Go to publications page'
+    const researchCard2026 = document.getElementById('Research-card-2026');
+    if (researchCard2026) {
+        researchCard2026.setAttribute('role', 'link');
+        researchCard2026.setAttribute('tabindex', '0');
+        const navigateToPublications = () => {
+            window.location.href = 'pages/publications/publications.html';
+        };
+        researchCard2026.addEventListener('click', navigateToPublications);
+        researchCard2026.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                navigateToPublications();
+            }
         });
     }
 });
 
 // Active sidebar menu based on scroll position
 document.addEventListener('DOMContentLoaded', function() {
-    const sidebarMenu = document.querySelector('.sidebar-menu');
-    if (!sidebarMenu) return;
+    const menus = Array.from(document.querySelectorAll('.sidebar-menu, .quick-scroll-menu'));
+    if (menus.length === 0) return;
 
     // Get all sections that can be observed
     const sections = document.querySelectorAll('.research-year, .publication-year, .member-group');
     if (sections.length === 0) return;
 
-    // Get all sidebar menu links
-    const menuLinks = sidebarMenu.querySelectorAll('a');
+    // Get all menu links
+    const menuLinks = menus.reduce((acc, menu) => {
+        return acc.concat(Array.from(menu.querySelectorAll('a')));
+    }, []);
 
     // Function to update active menu item
     function updateActiveMenu(activeId) {

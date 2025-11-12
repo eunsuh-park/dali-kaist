@@ -586,6 +586,25 @@
         width: 100%;
         margin-top:0;
     }
+
+    #affiliated {
+        gap:1rem;
+    }
+
+    .affiliated-member {
+        margin-bottom: 0 !important;
+    }
+
+    .alumni-item-content {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .alumni-current {
+        text-align: left;
+    }
 }
 
 .members-page .members-section-title:first-of-type {

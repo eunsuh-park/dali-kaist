@@ -33,12 +33,18 @@
 @media (max-width: 1024px) and (min-width: 769px) {
     .detail-view {
         margin-top: calc(var(--nav-height) + 0.75rem);
+        padding: 0 !important;
     }
 }
 
 @media (max-width: 768px) {
     .detail-view {
-        margin-top: calc(var(--nav-height) - 0.25rem);
+        margin-top: 0rem;
+    }
+    
+    #activity-detail {
+        margin-top: 0rem;
+        padding: 5rem 1rem;
     }
 }
 

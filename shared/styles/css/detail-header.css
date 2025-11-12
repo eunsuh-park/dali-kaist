@@ -12,6 +12,7 @@
 .detail-header-title {
     display: block;
     margin: 0;
+    margin-top: 0.25rem;
 }
 
 /* Activity style: title with date */

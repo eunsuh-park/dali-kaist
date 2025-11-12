@@ -173,7 +173,11 @@ function showPublicationDetail(publicationId) {
 
     publicationDetailInfoElement.innerHTML = `
         <div class="publication-detail-image">
-            <div class="publication-placeholder-image"></div>
+            <div class="publication-placeholder-image">
+                <div class="publication-icon">
+                    <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><title>blockquote_line</title><g id="blockquote_line" fill='none' fill-rule='evenodd'><path d='M24 0v24H0V0zM12.594 23.258l-.012.002-.071.035-.02.004-.014-.004-.071-.036c-.01-.003-.019 0-.024.006l-.004.01-.017.428.005.02.01.013.104.074.015.004.012-.004.104-.074.012-.016.004-.017-.017-.427c-.002-.01-.009-.017-.016-.018m.264-.113-.014.002-.184.093-.01.01-.003.011.018.43.005.012.008.008.201.092c.012.004.023 0 .029-.008l.004-.014-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014-.034.614c0 .012.007.02.017.024l.015-.002.201-.093.01-.008.003-.011.018-.43-.003-.012-.01-.01z'/><path fill='#D8D8D8FF' d='M11.778 4.371a1 1 0 0 1-.15 1.407c-.559.452-.924.886-1.163 1.276a2 2 0 1 1-2.46 1.792c-.024-.492.02-1.15.293-1.892.326-.884.956-1.829 2.073-2.732a1 1 0 0 1 1.407.15ZM15 5a1 1 0 1 0 0 2h5a1 1 0 1 0 0-2zm0 4a1 1 0 1 0 0 2h5a1 1 0 1 0 0-2zM4 14a1 1 0 0 1 1-1h15a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1m1 3a1 1 0 1 0 0 2h15a1 1 0 1 0 0-2zM3.006 8.846a2 2 0 1 0 2.459-1.792c.239-.39.604-.824 1.164-1.276A1 1 0 1 0 5.37 4.222c-1.117.903-1.747 1.848-2.073 2.732a4.757 4.757 0 0 0-.292 1.892Z'/></g></svg>
+                </div>
+            </div>
         </div>
         ${metaParts.length ? `<div class="publication-detail-meta">${metaParts.join('')}</div>` : ''}
         <div class="publication-detail-abstract">
@@ -221,25 +225,45 @@ function initializePublicationCardClicks() {
 
 // Generate sidebar menu with year counts
 function generateSidebarMenu(publicationsByYear) {
-    const sidebarMenu = document.querySelector('.sidebar-menu');
-    if (!sidebarMenu) return;
-    
-    sidebarMenu.innerHTML = '';
+    const menus = Array.from(document.querySelectorAll('.sidebar-menu, .quick-scroll-menu'));
+    if (menus.length === 0) return;
+
+    menus.forEach(menu => {
+        menu.innerHTML = '';
+        if (menu.classList.contains('quick-scroll-menu')) {
+            menu.classList.add('quick-scroll-menu--hidden');
+        }
+    });
     
     // Get years sorted in descending order
     const years = Object.keys(publicationsByYear).sort((a, b) => b - a);
     
     years.forEach((year, index) => {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = `#${year}`;
-        a.textContent = year;
-        if (index === 0) {
-            a.classList.add('active');
+        menus.forEach(menu => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+
+            if (menu.classList.contains('quick-scroll-menu')) {
+                li.classList.add('quick-scroll-item');
+                a.classList.add('quick-scroll-link');
+                menu.classList.remove('quick-scroll-menu--hidden');
+            }
+
+            a.href = `#${year}`;
+            a.textContent = year;
+            if (index === 0) {
+                a.classList.add('active');
+            }
+
+            li.appendChild(a);
+            menu.appendChild(li);
+        });
+    });
+
+    menus.forEach(menu => {
+        if (menu.classList.contains('quick-scroll-menu') && menu.children.length === 0) {
+            menu.classList.add('quick-scroll-menu--hidden');
         }
-        
-        li.appendChild(a);
-        sidebarMenu.appendChild(li);
     });
 }
 
@@ -360,15 +384,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Function to initialize scroll-based sidebar activation
 function initializeScrollSidebar() {
-    const sidebarMenu = document.querySelector('.sidebar-menu');
-    if (!sidebarMenu) return;
+    const menus = Array.from(document.querySelectorAll('.sidebar-menu, .quick-scroll-menu'));
+    if (menus.length === 0) return;
 
     // Get all sections that can be observed
     const sections = document.querySelectorAll('.publication-year');
     if (sections.length === 0) return;
 
-    // Get all sidebar menu links
-    const menuLinks = sidebarMenu.querySelectorAll('a');
+    // Get all menu links across sidebar and quick scroll menus
+    const menuLinks = menus.reduce((acc, menu) => {
+        return acc.concat(Array.from(menu.querySelectorAll('a')));
+    }, []);
 
     // Function to update active menu item
     function updateActiveMenu(activeId) {

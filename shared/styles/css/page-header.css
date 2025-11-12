@@ -42,5 +42,15 @@
 
     .page-header {
         border-right: none;
+        position: sticky;
+        top: var(--nav-height);
+        width: 100%;
+        transform: translateY(0);
+        transition: transform 0.35s ease;
+        z-index: 850;
+    }
+
+    body.detail-view-open .page-header {
+        transform: translateY(-110%);
     }
 }

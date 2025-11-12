@@ -18,8 +18,11 @@
 .activity-placeholder-image {
     width: 100%;
     aspect-ratio: 1 / 1;
-    background-color: #d3d3d3;
+    background-color: var(--light-bg);
     border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .activity-nav-btn {
@@ -73,11 +76,24 @@
 /* .activity-detail-description common styles are handled by .detail-description in detail-content.css */
 /* Note: Date is displayed in detail-header component via .detail-header-title-date */
 
-.activity-detail-actions {
+@media (max-width: 1024px) and (min-width: 769px) {
+    .activity-image-container {
+        gap: 1rem;
+    }
 }
 
 /* Responsive for activity detail */
 @media (max-width: 768px) {
     /* Additional responsive styles can be added here if needed */
+    .activity-image-container {
+        gap: 1rem;
+    }
+
+    #activity-section {
+        padding: 0 !important;
+    }
+    /* 모바일에서 좌우 패딩 제거. */
+
+
 }
 

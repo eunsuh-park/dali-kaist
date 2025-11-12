@@ -54,7 +54,6 @@
 
 /* Responsive Design for Sidebar - nav.css와 동일한 브레이크포인트 적용 */
 
-/* Tablet & Mobile (≤1023px): 사이드바 메뉴 숨김, 레이아웃 풀폭 전환 */
 @media (max-width: 1023px) {
     .page-layout {
         width: 100%;
@@ -62,188 +61,13 @@
         padding-left: 0;
     }
 
-    /* 사이드바 ul 기본 숨김 (publications, members 페이지에서 하단 버튼으로 표시) */
     .sidebar-menu {
-        display: none;
-    }
-    
-    /* Publications 페이지에서 사이드바 메뉴를 하단 원형 버튼으로 표시 */
-    .publications-page .sidebar-menu {
-        position: fixed;
-        right: 20px;
-        bottom: 20px;
-        z-index: 1100;
-        display: flex;
-        flex-direction: column;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        background-color: rgba(255, 255, 255, 0.4);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 20px 20px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        transform: translateX(0);
-        opacity: 1;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-    
-    /* 상세 페이지가 열렸을 때 사이드바 숨김 (슬라이드 아웃) */
-    .publications-page.detail-view-open .sidebar-menu,
-    .members-page.detail-view-open .sidebar-menu {
-        transform: translateX(120px);
-        opacity: 0;
-        pointer-events: none;
-    }
-    
-    .publications-page .sidebar-menu li {
-        margin: 0;
-        padding: 0;
-    }
-    
-    .publications-page .sidebar-menu a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        padding: 0;
-        margin: 0;
-        font-size: 0.6rem;
-        line-height: 1;
-        text-decoration: none;
-        color: var(--text-color);
-        border-radius: 50%;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-family: 'Tomorrow', sans-serif;
-    }
-
-    .publications-page .sidebar-menu a:hover {
-        background-color: var(--hover-color);
-    }
-    
-    .publications-page .sidebar-menu a.active {
-        background-color: var(--primary-color);
-        color: white;
-        border-color: var(--primary-color);
-    }
-    
-    .publications-page .sidebar-menu .year-count {
-        display: none;
-    }
-
-    /* Members 페이지에서 사이드바 메뉴를 하단 원형 버튼으로 표시 */
-    .members-page .sidebar-menu {
-        position: fixed;
-        right: 20px;
-        bottom: 20px;
-        z-index: 1100;
-        display: flex;
-        flex-direction: column;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        background-color: rgba(255, 255, 255, 0.4);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 20px 20px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        transform: translateX(0);
-        opacity: 1;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-    
-    
-    .members-page .sidebar-menu li {
-        margin: 0;
-        padding: 0;
-    }
-    
-    .members-page .sidebar-menu a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        padding: 0;
-        margin: 0;
-        font-size: 0;
-        line-height: 1;
-        text-decoration: none;
-        color: var(--text-color);
-        border-radius: 50%;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        position: relative;
-        font-family: 'Tomorrow', sans-serif;
-    }
-
-    /* Members 페이지 메뉴 텍스트를 타블렛/모바일에서 짧게 표시 */
-    .members-page .sidebar-menu a[href="#professor"]::after {
-        content: "Prof";
-        font-size: 0.6rem;
-    }
-
-    .members-page .sidebar-menu a[href="#phd"]::after {
-        content: "Ph.D";
-        font-size: 0.6rem;
-    }
-
-    .members-page .sidebar-menu a[href="#affiliated"]::after {
-        content: "Affil";
-        font-size: 0.6rem;
-    }
-
-    .members-page .sidebar-menu a[href="#alumni"]::after {
-        content: "Alum";
-        font-size: 0.6rem;
-    }
-    
-    .members-page .sidebar-menu a:hover {
-        background-color: var(--hover-color);
-    }
-    
-    .members-page .sidebar-menu a.active {
-        background-color: var(--primary-color);
-        color: white;
-        border-color: var(--primary-color);
-    }
-
-    .members-page .sidebar-menu a.active::after {
-        color: white;
-    }
-
-    /* page-header: 모든 반응형에서 상단 고정 유지, 좌우 패딩 0 적용 */
-    .page-header {
-        position: fixed !important;
-        top: var(--nav-height) !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: auto !important;
-        padding: 1rem 32px !important; /* 좌우 0으로 통일 */
-        display: flex !important;
-        flex-direction: row;
-        align-items: center; /* 타이틀 수직 정렬 */
-        gap: 0.5rem;
-        z-index: 900; /* 컨텐츠 위, 내비게이션 아래 */
-        background-color: white !important;
-    }
-
-    .page-header h2 {
-        margin: 0;
+        display: none !important;
     }
 }
 
-/* Mobile (≤767px): 여백만 소폭 조정 가능 */
 @media (max-width: 767px) {
     .page-header {
-        padding: 0.75rem 16px !important; /* 모바일에서도 좌우 0 유지 */
-        background-color: white !important;
-    }
-
-    .publications-page .sidebar-menu,
-    .members-page .sidebar-menu {
-        bottom: 20px;
+        padding: 0.75rem 16px;
     }
 }

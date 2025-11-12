@@ -18,6 +18,12 @@ const activityIds = [
     'annual-review-2022'
 ];
 
+const galleryPlaceholderIconHtml = `
+    <div class="gallery-placeholder-icon">
+        <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><title>pic_2_fill</title><g id="pic_2_fill" fill='none'><path d='M24 0v24H0V0zM12.593 23.258l-.011.002-.071.035-.02.004-.014-.004-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01-.017.428.005.02.01.013.104.074.015.004.012-.004.104-.074.012-.016.004-.017-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113-.013.002-.185.093-.01.01-.003.011.018.43.005.012.008.007.201.093c.012.004.023 0 .029-.008l.004-.014-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014-.034.614c0 .012.007.02.017.024l.015-.002.201-.093.01-.008.004-.011.017-.43-.003-.012-.01-.01z'/><path fill='#D8D8D8FF' d='M20 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm0 2H4v14h.929l9.308-9.308a1.25 1.25 0 0 1 1.768 0L20 13.686zM7.5 7a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3'/></g></svg>
+    </div>
+`;
+
 // Activity detail data
 const activityDetails = {
     'research-seminar-2024': {
@@ -254,33 +260,29 @@ function showActivityDetail(activityId) {
     
     // Build detail content
     const detailContent = document.getElementById('activity-detail-info');
-    detailContent.innerHTML = `
-        <div class="activity-image-container">
-            ${prevId ? `
+    const prevButtonHtml = prevId ? `
             <button class="activity-nav-btn activity-prev-btn" data-activity-id="${prevId}" aria-label="Previous activity">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
-            ` : '<div class="activity-nav-btn-placeholder"></div>'}
-            <div class="activity-detail-image">
-                <div class="activity-placeholder-image"></div>
-            </div>
-            ${nextId ? `
+        ` : '<div class="activity-nav-btn-placeholder"></div>';
+
+    const nextButtonHtml = nextId ? `
             <button class="activity-nav-btn activity-next-btn" data-activity-id="${nextId}" aria-label="Next activity">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
-            ` : '<div class="activity-nav-btn-placeholder"></div>'}
-        </div>
+        ` : '<div class="activity-nav-btn-placeholder"></div>';
+
+    const metaHtml = activityInfo.source ? `
         <div class="activity-detail-meta">
             <div class="activity-detail-source">${activityInfo.source}</div>
         </div>
-        <div class="activity-detail-description">
-            <p>${activityInfo.description}</p>
-        </div>
-        ${activityInfo.url ? `
+    ` : '';
+
+    const actionsHtml = (activityInfo.url && typeof getActionButtonTemplate === 'function') ? `
         <div class="activity-detail-actions">
             ${getActionButtonTemplate({
                 type: 'primary',
@@ -292,62 +294,86 @@ function showActivityDetail(activityId) {
                 ariaLabel: 'View original news'
             })}
         </div>
-        ` : ''}
-    `;
-    
-    // Add navigation button handlers
+    ` : '';
+
+    detailContent.innerHTML = `
+        <div class="activity-image-container">
+            ${prevButtonHtml}
+            <div class="activity-detail-image">
+                <div class="activity-placeholder-image">${galleryPlaceholderIconHtml}</div>
+            </div>
+            ${nextButtonHtml}
+        </div>
+        ${metaHtml}
+        <div class="activity-detail-description">
+            <p>${activityInfo.description || ''}</p>
+        </div>
+        ${actionsHtml}
+    `
+        .replace(/\n\s+\n/g, '\n');
+
     const prevBtn = detailContent.querySelector('.activity-prev-btn');
-    const nextBtn = detailContent.querySelector('.activity-next-btn');
-    
     if (prevBtn) {
         prevBtn.addEventListener('click', function() {
             const targetId = this.getAttribute('data-activity-id');
             if (targetId) {
+                const targetCard = document.querySelector(`.gallery-item[data-activity-id="${targetId}"]`);
+                if (targetCard) {
+                    lastSelectedActivityElement = targetCard;
+                }
                 showActivityDetail(targetId);
             }
         });
     }
-    
+
+    const nextBtn = detailContent.querySelector('.activity-next-btn');
     if (nextBtn) {
         nextBtn.addEventListener('click', function() {
             const targetId = this.getAttribute('data-activity-id');
             if (targetId) {
+                const targetCard = document.querySelector(`.gallery-item[data-activity-id="${targetId}"]`);
+                if (targetCard) {
+                    lastSelectedActivityElement = targetCard;
+                }
                 showActivityDetail(targetId);
             }
         });
     }
-    
-    // Scroll to top
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+ 
+ // Back to activities list
+ function showActivitiesList() {
+     const activityList = document.getElementById('activity-content');
+     const activityDetail = document.getElementById('activity-detail');
+ 
+     activityList.style.display = 'block';
+     activityDetail.style.display = 'none';
+ 
+     // Remove class from body to show sidebar on tablet/mobile
+     document.body.classList.remove('detail-view-open');
+ 
+     // Scroll to top
+     scrollToActivityElement(lastSelectedActivityElement);
+ }
+ 
+ // Initialize activity item click handlers
+ document.addEventListener('DOMContentLoaded', function() {
+     const galleryPlaceholders = document.querySelectorAll('.gallery-item-placeholder');
+     galleryPlaceholders.forEach(placeholder => {
+         placeholder.innerHTML = galleryPlaceholderIconHtml;
+     });
 
-// Back to activities list
-function showActivitiesList() {
-    const activityList = document.getElementById('activity-content');
-    const activityDetail = document.getElementById('activity-detail');
-    
-    activityList.style.display = 'block';
-    activityDetail.style.display = 'none';
-    
-    // Remove class from body to show sidebar on tablet/mobile
-    document.body.classList.remove('detail-view-open');
-    
-    // Scroll to top
-    scrollToActivityElement(lastSelectedActivityElement);
-}
-
-// Initialize activity item click handlers
-document.addEventListener('DOMContentLoaded', function() {
-    // Add click handlers to all gallery items
-    const galleryItems = document.querySelectorAll('.gallery-item[data-activity-id]');
-    galleryItems.forEach(item => {
-        item.addEventListener('click', function(e) {
-            const activityId = this.getAttribute('data-activity-id');
-            if (activityId && activityDetails[activityId]) {
-                lastSelectedActivityElement = this;
-                showActivityDetail(activityId);
-            }
-        });
-    });
-});
-
+     // Add click handlers to all gallery items
+     const galleryItems = document.querySelectorAll('.gallery-item[data-activity-id]');
+     galleryItems.forEach(item => {
+         item.addEventListener('click', function(e) {
+             const activityId = this.getAttribute('data-activity-id');
+             if (activityId && activityDetails[activityId]) {
+                 lastSelectedActivityElement = this;
+                 showActivityDetail(activityId);
+             }
+         });
+     });
+ });

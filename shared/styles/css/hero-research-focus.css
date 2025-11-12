@@ -28,18 +28,40 @@
 }
 
 #Research-card-2026{
-    background-color: var(--primary-color-light);
+    background-color: var(--primary-color);
+    cursor: pointer;
+    position: relative;
 }
 
 #Research-card-2026 .research-card-title {
-    color: var(--primary-color-dark);
+    color: white;
 }
 
 #Research-card-2026 .coming-soon-text {
     margin: 0;
     font-size: 1rem;
     font-weight: 300;
-    color: var(--primary-color-dark);
+    text-align: right;
+    color: white;
+    display: none;
+}
+
+#Research-card-2026:hover .coming-soon-text {
+    display: block;
+}
+
+#Research-card-2026:hover,
+#Research-card-2026:focus-visible {
+    background-color: var(--primary-color-dark);
+    border-color: var(--primary-color-dark);
+    outline: none;
+}
+
+#Research-card-2026:hover .research-card-title,
+#Research-card-2026:focus-visible .research-card-title,
+#Research-card-2026:hover .coming-soon-text,
+#Research-card-2026:focus-visible .coming-soon-text {
+    color: #fff;
 }
 
 
