@@ -19,11 +19,12 @@
 /* Tablet */
 @media (max-width: 1023px) and (min-width: 768px) {
     .page-header {
-        border-right: none;
-        position: sticky;
+        border-right: none;  
         top: var(--nav-height);
-        height: var(--nav-height);
+        height: auto;
         box-sizing: border-box;
+        width: 100%;        padding: 1rem 1.75rem;
+        padding: 1rem 1.75rem;
     }
 
     .page-header h2 {
@@ -42,14 +43,15 @@
 
     .page-header {
         border-right: none;
-        position: sticky;
-        top: var(--nav-height);
         width: 100%;
-        transform: translateY(0);
-        transition: transform 0.35s ease;
-        z-index: 850;
+        top: var(--nav-height);
+        border-right: none;  
+        height: auto;
+        box-sizing: border-box;
+        width: 100%;        
+        padding: 1rem 1.75rem;
     }
-
+    
     body.detail-view-open .page-header {
         transform: translateY(-110%);
     }
