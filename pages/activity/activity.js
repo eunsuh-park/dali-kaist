@@ -244,20 +244,37 @@ function showActivityDetail(activityId) {
     // Add class to body to hide sidebar on tablet/mobile
     document.body.classList.add('detail-view-open');
     
-    // Initialize detail header using detail-header component
+    // Get previous and next IDs
+    const prevId = getPreviousActivityId(activityId);
+    const nextId = getNextActivityId(activityId);
+    
+    // Get data from gallery item
+    const galleryItem = document.querySelector(`.gallery-item[data-activity-id="${activityId}"]`);
+    
+    // Get image
+    const galleryImage = galleryItem ? galleryItem.querySelector('.gallery-item-image img') : null;
+    const imageSrc = galleryImage ? galleryImage.getAttribute('src') : null;
+    const imageAlt = galleryImage ? galleryImage.getAttribute('alt') : activityInfo.title;
+    
+    // Get title, date, and source from gallery item
+    const galleryTitle = galleryItem ? galleryItem.querySelector('.gallery-item-title') : null;
+    const galleryDate = galleryItem ? galleryItem.querySelector('.gallery-item-date') : null;
+    const gallerySource = galleryItem ? galleryItem.querySelector('.gallery-item-source') : null;
+    
+    const title = galleryTitle ? galleryTitle.textContent.trim() : activityInfo.title;
+    const date = galleryDate ? galleryDate.textContent.trim() : activityInfo.date;
+    const source = gallerySource ? gallerySource.textContent.trim() : activityInfo.source;
+
+    // Update detail header with gallery item data
     initializeDetailHeader('activity-detail', {
-        title: activityInfo.title,
-        date: activityInfo.date, // Activity는 date 표시
+        title: title,
+        date: date,
         backButtonId: 'back-to-activities',
         backButtonAriaLabel: 'Back to activities list',
         onBackClick: showActivitiesList,
         titleId: 'activity-detail-name'
     });
-    
-    // Get previous and next IDs
-    const prevId = getPreviousActivityId(activityId);
-    const nextId = getNextActivityId(activityId);
-    
+
     // Build detail content
     const detailContent = document.getElementById('activity-detail-info');
     const prevButtonHtml = prevId ? `
@@ -276,9 +293,16 @@ function showActivityDetail(activityId) {
             </button>
         ` : '<div class="activity-nav-btn-placeholder"></div>';
 
-    const metaHtml = activityInfo.source ? `
+    // Image HTML - use gallery item image if available, otherwise use placeholder
+    const imageHtml = imageSrc ? `
+        <img src="${imageSrc}" alt="${imageAlt}">
+    ` : `
+        <div class="activity-placeholder-image">${galleryPlaceholderIconHtml}</div>
+    `;
+
+    const metaHtml = source ? `
         <div class="activity-detail-meta">
-            <div class="activity-detail-source">${activityInfo.source}</div>
+            <div class="activity-detail-source">${source}</div>
         </div>
     ` : '';
 
@@ -300,7 +324,7 @@ function showActivityDetail(activityId) {
         <div class="activity-image-container">
             ${prevButtonHtml}
             <div class="activity-detail-image">
-                <div class="activity-placeholder-image">${galleryPlaceholderIconHtml}</div>
+                ${imageHtml}
             </div>
             ${nextButtonHtml}
         </div>

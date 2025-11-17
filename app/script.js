@@ -65,6 +65,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Research card button 생성 (index.html)
+    const researchCardsContainer = document.querySelector('.research-cards-container');
+    if (researchCardsContainer && typeof getActionButtonTemplate === 'function') {
+        const buttonHtml = getActionButtonTemplate({
+            type: 'primary',
+            href: 'pages/publications/publications.html',
+            text: 'Publications',
+            ariaLabel: 'View Publications'
+        });
+        const buttonWrapper = document.createElement('div');
+        buttonWrapper.className = 'research-publications-button';
+        buttonWrapper.innerHTML = buttonHtml;
+        researchCardsContainer.appendChild(buttonWrapper);
+    }
+
     // Go to Top 버튼 주입 (activity, publications, index 페이지에 추가)
     const pagesWithDetailView = ['activity/activity.html', 'activity.html', 'publications/publications.html', 'publications.html', 'members/members.html', 'members.html', 'index.html', 'index'];
     const isIndexPage = (currentPage === '' || currentPage === 'index.html' || currentPage === 'index' || currentPath === '' || currentPath.endsWith('index.html') || currentPath.endsWith('/'));
