@@ -49,7 +49,7 @@
     display: block;
     font-size: 1rem;
     line-height: 1.25;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Pretendard', "Roboto", sans-serif;
     font-weight: 300;
     color: var(--text-color-light);
 }

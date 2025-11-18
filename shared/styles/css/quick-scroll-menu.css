@@ -41,7 +41,7 @@
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-family: 'Tomorrow', sans-serif;
+    font-family: 'Pretendard', 'Roboto', sans-serif;
     font-size: 0.65rem;
     font-weight: 500;
     color: var(--text-color);

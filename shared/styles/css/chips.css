@@ -8,7 +8,7 @@
 }
 
 .chip {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Pretendard', 'Roboto', sans-serif;
     display: inline-block;
     padding: 0.4rem 0.8rem;
     background-color: var(--light-bg);
